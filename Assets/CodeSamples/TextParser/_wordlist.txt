@@ -1,0 +1,7 @@
+settings/language_ja	日本語
+settings/language_en	English
+
+day_fmt 				{0}月{1}日
+status/params			攻撃力
+						防御力
+						精神力

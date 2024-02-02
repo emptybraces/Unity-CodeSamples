@@ -1,0 +1,10 @@
+# Section1
+
+Action1 image (100, 50)
+Action1 image (0, 0) (200, 300) 10
+
+
+# Section2
+
+Action2 testtag This-is-sample-text.
+
