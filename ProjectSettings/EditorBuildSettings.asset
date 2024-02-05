@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/CodeSamples/WindowMode.unity
+    path: Assets/CodeSamples/Scene_WindowMode.unity
     guid: 61a72fa1868607f41ba2371719f83763
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 6cf0f1e2e90aaf4418597119ae30193e,
+      type: 2}
     com.unity.addressableassets: {fileID: 11400000, guid: a27d31eda600df8409bd4f39c293d1dc,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 16dd9bfab26077645bae568bc099e429,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 17305e5e9af06084a963d1d08eca3400,
       type: 2}
   m_UseUCBPForAssetBundles: 0
