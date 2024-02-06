@@ -5,7 +5,7 @@ Example implementation of Load-Release Management with AAS. Also Used [SaveLoad]
 ![aasloader](https://github.com/emptybraces/Unity_CodeSamples/assets/1441835/c7efbc31-e631-4f56-a716-6aa2a4d10b14)
 
 ## [SaveLoad](Assets/CodeSamples/SaveLoad)
-Simple save system with inspector viewer.
+Simple save/load system with inspector viewer.
 ![saveload](https://github.com/emptybraces/Unity_CodeSamples/assets/1441835/5b51f0eb-f2bc-452a-9caf-88751312cf99)
 
 ## [Change Script Symbol](Assets/CodeSamples/ChangeScriptSymbol)
