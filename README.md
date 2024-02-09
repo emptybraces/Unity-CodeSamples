@@ -8,6 +8,10 @@ Example implementation of Load-Release Management with Addressables Asset System
 Simple save/load system with inspector viewer.
 ![saveload](https://github.com/emptybraces/Unity_CodeSamples/assets/1441835/5b51f0eb-f2bc-452a-9caf-88751312cf99)
 
+## [Excel(Xlsx/CSV) Editor](Assets/CodeSamples/ExcelEditor)
+Example implementation that allows Xlsx and CSV to be loaded, edited, and saved on a custom editor.
+![exceleditor](https://github.com/emptybraces/Unity_CodeSamples/assets/1441835/03555f18-b6c4-45de-a93b-535b7967e356)
+
 ## [Change Script Symbol](Assets/CodeSamples/ChangeScriptSymbol)
 Example code to change the scripting symbols from the menu bar. Also changing XR Providers.
 ![customtopbamenu](https://github.com/emptybraces/Unity_CodeSamples/assets/1441835/d5656912-ad34-41b7-ba2b-b81022dd8225)
