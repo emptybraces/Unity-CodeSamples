@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Save Data Viewer
   m_EditorClassIdentifier: 
   Data:
-    Version: 
-    SaveCount: 0
+    Version: 0.1.0
+    SaveCount: 30000
     ProjectileDataList: []
