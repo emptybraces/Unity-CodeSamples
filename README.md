@@ -9,7 +9,7 @@ Simple save/load system with inspector viewer.
 ![saveload](https://github.com/emptybraces/Unity_CodeSamples/assets/1441835/5b51f0eb-f2bc-452a-9caf-88751312cf99)
 
 ## [Excel(Xlsx/CSV) Editor](Assets/CodeSamples/ExcelEditor)
-Example implementation that allows Xlsx and CSV to be loaded, edited, and saved on a custom editor.Using [MiniExcel](https://github.com/mini-software/MiniExcel).
+Example implementation that allows Xlsx and CSV to be read, edit, and save on a custom editor. Using [MiniExcel](https://github.com/mini-software/MiniExcel).
 ![exceleditor](https://github.com/emptybraces/Unity_CodeSamples/assets/1441835/03555f18-b6c4-45de-a93b-535b7967e356)
 
 ## [Change Script Symbol](Assets/CodeSamples/ChangeScriptSymbol)
