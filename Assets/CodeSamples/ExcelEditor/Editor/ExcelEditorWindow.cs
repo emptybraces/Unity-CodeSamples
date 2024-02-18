@@ -12,7 +12,6 @@ namespace Emptybraces.Editor
 	{
 		Vector2 _scroll;
 		string _filepath;
-		int _rowMax = 10, _colMax = 10;
 		GUIContent _iconSearchFile;
 		GUIStyle _guiStyleTableHeaderRow;
 		GUIStyle _guiStyleTableHeaderColumn;
@@ -21,6 +20,7 @@ namespace Emptybraces.Editor
 		DataTable[] _tables;
 		string[] _sheets;
 		int _currentSheetIdx;
+
 		[MenuItem("Window/ExcelEditor")]
 		public static void Open()
 		{
@@ -146,7 +146,6 @@ namespace Emptybraces.Editor
 			// }
 			var text_size = new Vector2(100, EditorGUIUtility.singleLineHeight);
 			var table = _tables[_currentSheetIdx];
-			// ウィンドウ高さの下限か、データ行数分か
 			var row_header_width = 30;
 			var column_header_height = text_size.y;
 			var data_width = text_size.x * table.Columns.Count + row_header_width;
@@ -154,6 +153,7 @@ namespace Emptybraces.Editor
 			var sheet_button_height = 30;
 			var scrollbar_h_offset = 20;
 			var sy = r.y;
+			// ウィンドウ高さの下限か、データ行数分か
 			r.height = Mathf.Min(position.height - r.y - sheet_button_height - scrollbar_h_offset, data_height + 20/*スクロールバーの分？*/);
 			using (var scrollScope = new GUI.ScrollViewScope(r, _scroll, new Rect(r.x, r.y, data_width, data_height)))
 			{
@@ -200,7 +200,7 @@ namespace Emptybraces.Editor
 		void _ValidatePath(string path)
 		{
 			if (!_filepath.EndsWith(".xlsx") && !_filepath.EndsWith(".csv"))
-				_helpBoxInfo = (MessageType.Error, "Only supported file is .xlsx or .csv.");
+				_helpBoxInfo = (MessageType.Error, "Supported file for .xlsx or .csv only.");
 			else if (!File.Exists(_filepath))
 				_helpBoxInfo = (MessageType.Warning, "Specified file path is not exists.");
 			else

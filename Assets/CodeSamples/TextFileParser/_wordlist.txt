@@ -1,5 +1,5 @@
-settings/language_ja	日本語
-settings/language_en	English
+settings/language_ja	あああ
+settings/language_en	aaa
 
 day_fmt 				{0}月{1}日
 status/params			攻撃力
