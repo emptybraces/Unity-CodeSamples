@@ -22,4 +22,4 @@ Example implementation of window mode switching on runtime.
 
 ## [Text File Parser](Assets/CodeSamples/TextFileParser)
 Example of converting a text files with simple or complex content into data that can be handled.
-![aaa](https://github.com/emptybraces/Unity_CodeSamples/assets/1441835/95bcfb11-51e1-48b1-baf0-cca9e6ef8054)
+![fileparser](https://github.com/emptybraces/Unity_CodeSamples/assets/1441835/d1be6bad-035c-49dd-a99c-a7f9ca981629)
