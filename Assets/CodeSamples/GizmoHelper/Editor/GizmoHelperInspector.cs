@@ -3,7 +3,7 @@ using UnityEditor;
 
 namespace EmptyBraces.Editor
 {
-	[CustomEditor(typeof(GizmoHelper))]//拡張するクラスを指定
+	[CustomEditor(typeof(GizmoHelper))]
 	public class GizmoHelperInspector : UnityEditor.Editor
 	{
 		public override void OnInspectorGUI()
