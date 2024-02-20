@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace EmptyBraces
 {
+	[AddComponentMenu("")]
 	public class GizmoHelper : MonoBehaviour
 	{
 		public Color DefaultColor = Color.white;
-		[Range(0, 1)] public float Interpolation;
 		public static GizmoHelper Instance
 		{
 			get
@@ -23,101 +23,93 @@ namespace EmptyBraces
 			}
 		}
 		static GizmoHelper s_instance;
-		List<Func<float>> _gizmoRenderList = new();
+		List<Func<bool>> _gizmoRenderList = new();
 		void OnDrawGizmos()
 		{
 			for (int i = 0; i < _gizmoRenderList.Count; ++i)
-				if (_gizmoRenderList[i]() < Time.time)
+				if (_gizmoRenderList[i]())
 					_gizmoRenderList.RemoveAt(i--);
 		}
-		public void DrawRay(Vector3 p, Vector3 dir, float time = 0) => DrawRay(p, dir, DefaultColor, time);
-		public void DrawRay(Vector3 p, Vector3 dir, Color c, float time = 0)
+		[Conditional("DEBUG")] public void DrawRay(Vector3 p, Vector3 dir, float time = 0) => DrawRay(p, dir, DefaultColor, time);
+		[Conditional("DEBUG")]
+		public static void DrawRay(Vector3 p, Vector3 dir, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = Time.unscaledTime + time - 0.0001f;
-			_gizmoRenderList.Add(() =>
+			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;
 				Gizmos.DrawRay(p, dir);
-				return end_time;
+				return end_time < (unscaled ? Time.unscaledTime : Time.time);
 			});
 		}
-		public void DrawSphere(Vector3 p, float radius, float time = 0) => DrawSphere(p, radius, DefaultColor, time);
-		public void DrawSphere(Vector3 p, float radius, Color c, float time = 0)
+		[Conditional("DEBUG")] public static void DrawSphere(Vector3 p, float radius, float time = 0) => DrawSphere(p, radius, Instance.DefaultColor, time);
+		[Conditional("DEBUG")]
+		public static void DrawSphere(Vector3 p, float radius, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = Time.unscaledTime + time - 0.0001f;
-			_gizmoRenderList.Add(() =>
+			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;
 				Gizmos.DrawSphere(p, radius);
-				return end_time;
+				return end_time < (unscaled ? Time.unscaledTime : Time.time);
 			});
 		}
-		public void DrawSphereInterpolation(Vector3 p1, Vector3 p2, float radius, Color c, float time = 0, bool isEditorPause = false)
+		[Conditional("DEBUG")] public static void DrawWireSphere(Vector3 p, float radius, float span = 0) => DrawWireSphere(p, radius, Instance.DefaultColor, span);
+		[Conditional("DEBUG")]
+		public static void DrawWireSphere(Vector3 p, float radius, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = Time.unscaledTime + time - 0.0001f;
-			_gizmoRenderList.Add(() =>
-			{
-				Gizmos.color = c;
-				Gizmos.DrawSphere(Vector3.Lerp(p1, p2, Interpolation), radius);
-				if (isEditorPause)
-				{
-					EditorApplication.isPaused = true;
-					isEditorPause = false;
-				}
-				return end_time;
-			});
-		}
-		public void DrawWireSphere(Vector3 p, float radius, float time = 0) => DrawWireSphere(p, radius, DefaultColor, time);
-		public void DrawWireSphere(Vector3 p, float radius, Color c, float time = 0)
-		{
-			var end_time = Time.unscaledTime + time - 0.0001f;
-			_gizmoRenderList.Add(() =>
+			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;
 				Gizmos.DrawWireSphere(p, radius);
-				return end_time;
+				return end_time < (unscaled ? Time.unscaledTime : Time.time);
 			});
 		}
-		public void DrawCube(Vector3 p, Quaternion r, Vector3 size, float time = 0) => DrawCube(p, r, size, DefaultColor, time);
-		public void DrawCube(Vector3 p, Quaternion r, Vector3 size, Color c, float time = 0)
+		[Conditional("DEBUG")] public static void DrawCube(Vector3 p, Vector3 size, Quaternion r, float span = 0) => DrawCube(p, size, r, Instance.DefaultColor, span);
+		[Conditional("DEBUG")]
+		public static void DrawCube(Vector3 p, Vector3 size, Quaternion r, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = Time.unscaledTime + time - 0.0001f;
-			_gizmoRenderList.Add(() =>
+			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;
 				Gizmos.matrix = Matrix4x4.TRS(p, r, size);
 				Gizmos.DrawCube(Vector3.zero, Vector3.one);
 				Gizmos.matrix = Matrix4x4.identity;
-				return end_time;
+				return end_time < (unscaled ? Time.unscaledTime : Time.time);
 			});
 		}
-		public void DrawWireCube(Vector3 p, Quaternion r, Vector3 size, float time = 0) => DrawWireCube(p, r, size, DefaultColor, time);
-		public void DrawWireCube(Vector3 p, Quaternion r, Vector3 size, Color c, float time = 0)
+		[Conditional("DEBUG")] public static void DrawWireCube(Vector3 p, Vector3 size, Quaternion r, float span = 0) => DrawWireCube(p, size, r, Instance.DefaultColor, span);
+		[Conditional("DEBUG")]
+		public static void DrawWireCube(Vector3 p, Vector3 size, Quaternion r, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = Time.unscaledTime + time - 0.0001f;
-			_gizmoRenderList.Add(() =>
+			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;
 				Gizmos.matrix = Matrix4x4.TRS(p, r, size);
 				Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
 				Gizmos.matrix = Matrix4x4.identity;
-				return end_time;
+				return end_time < (unscaled ? Time.unscaledTime : Time.time);
 			});
 		}
-		public void DrawLine(Vector3 p1, Vector3 p2, float time = 0) => DrawLine(p1, p2, DefaultColor, time);
-		public void DrawLine(Vector3 p1, Vector3 p2, Color c, float time = 0)
+		[Conditional("DEBUG")] public static void DrawLine(Vector3 p1, Vector3 p2, float span = 0) => DrawLine(p1, p2, Instance.DefaultColor, span);
+		[Conditional("DEBUG")]
+		public static void DrawLine(Vector3 p1, Vector3 p2, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = Time.unscaledTime + time - 0.0001f;
-			_gizmoRenderList.Add(() =>
+			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;
 				Gizmos.DrawLine(p1, p2);
-				return end_time;
+				return end_time < (unscaled ? Time.unscaledTime : Time.time);
 			});
 		}
-		public void RemoveAllGizmos()
+		[Conditional("DEBUG")]
+		public static void RemoveAllGizmos()
 		{
-			_gizmoRenderList.Clear();
+			Instance._gizmoRenderList.Clear();
 		}
 	}
 }

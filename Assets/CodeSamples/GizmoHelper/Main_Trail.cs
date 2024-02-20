@@ -9,6 +9,12 @@ namespace EmptyBraces.GizmoHelperScene
 		[SerializeField] float _speed = 1;
 		[SerializeField] float _offset = 5;
 		[SerializeField] Transform box, sphere;
+#if UNITY_EDITOR
+		void OnGUI()
+		{
+			GUI.Label(new Rect(10, Screen.height - 50, 200, 20), $"LMB:ギズモ表示", UnityEditor.EditorStyles.boldLabel);
+		}
+#endif
 		void Update()
 		{
 			var p = Vector3.zero;
@@ -26,9 +32,9 @@ namespace EmptyBraces.GizmoHelperScene
 			{
 				var color = Color.HSVToRGB(Mathf.Repeat(Time.time, 1), 1f, .3f);
 				color.a = 0.5f;
-				GizmoHelper.Instance.DrawLine(box.position, sphere.position, color, _lifeTime);
-				GizmoHelper.Instance.DrawCube(box.position, box.rotation, box.lossyScale, color, _lifeTime);
-				GizmoHelper.Instance.DrawSphere(sphere.position, sphere.lossyScale.x/2, color, _lifeTime);
+				GizmoHelper.DrawLine(box.position, sphere.position, color, _lifeTime);
+				GizmoHelper.DrawCube(box.position, box.lossyScale, box.rotation, color, _lifeTime);
+				GizmoHelper.DrawSphere(sphere.position, sphere.lossyScale.x / 2, color, _lifeTime);
 			}
 		}
 	}

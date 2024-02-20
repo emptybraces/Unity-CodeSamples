@@ -11,7 +11,7 @@ namespace EmptyBraces.Editor
 			base.OnInspectorGUI();
 			if (GUILayout.Button("Clear All"))
 			{
-				GizmoHelper.Instance.RemoveAllGizmos();
+				GizmoHelper.RemoveAllGizmos();
 			}
 		}
 	}
