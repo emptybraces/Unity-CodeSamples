@@ -46,12 +46,12 @@ namespace EmptyBraces.GizmoHelperScene
 				if (Input.GetMouseButton(0))
 				{
 					var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-					var boxcast_angle = Mathf.Repeat(Time.time * 45, 90);
+					var boxcast_rotation = Quaternion.Euler(0, Mathf.Repeat(Time.time * 45, 90), 0);
 					var hit_count = 0;
 					switch (_raycastType)
 					{
 						case RaycastType.Box:
-							hit_count = Physics.BoxCastNonAlloc(ray.origin, Vector3.one * _raycastSize * 0.5f/*half extent*/, ray.direction, _raycastHits, Quaternion.Euler(boxcast_angle, 0, 0), _rayLength);
+							hit_count = Physics.BoxCastNonAlloc(ray.origin, Vector3.one * _raycastSize * 0.5f/*half extent*/, ray.direction, _raycastHits, boxcast_rotation, _rayLength);
 							break;
 						case RaycastType.Circle:
 							hit_count = Physics.SphereCastNonAlloc(ray, _raycastSize, _raycastHits, _rayLength);
@@ -71,7 +71,7 @@ namespace EmptyBraces.GizmoHelperScene
 							switch (_raycastType)
 							{
 								case RaycastType.Box:
-									GizmoHelper.DrawCube(ray.origin + ray.direction * _raycastHits[i].distance, Vector3.one * _raycastSize, Quaternion.Euler(boxcast_angle, 0, 0), Color.HSVToRGB(Mathf.Repeat(Time.time, 1), 1f, .3f), _gizmoLifeTime);
+									GizmoHelper.DrawCube(ray.origin + ray.direction * _raycastHits[i].distance, Vector3.one * _raycastSize, boxcast_rotation, Color.HSVToRGB(Mathf.Repeat(Time.time, 1), 1f, .3f), _gizmoLifeTime);
 									break;
 								case RaycastType.Circle:
 									GizmoHelper.DrawSphere(ray.origin + ray.direction * _raycastHits[i].distance, _raycastSize, Color.HSVToRGB(Mathf.Repeat(Time.time, 1), 1f, .3f), _gizmoLifeTime);

@@ -30,8 +30,8 @@ namespace EmptyBraces
 				if (_gizmoRenderList[i]())
 					_gizmoRenderList.RemoveAt(i--);
 		}
-		[Conditional("DEBUG")] public void DrawRay(Vector3 p, Vector3 dir, float time = 0) => DrawRay(p, dir, DefaultColor, time);
-		[Conditional("DEBUG")]
+		[Conditional("UNITY_EDITOR")] public void DrawRay(Vector3 p, Vector3 dir, float time = 0) => DrawRay(p, dir, DefaultColor, time);
+		[Conditional("UNITY_EDITOR")]
 		public static void DrawRay(Vector3 p, Vector3 dir, Color c, float span = 0, bool unscaled = false)
 		{
 			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
@@ -42,8 +42,8 @@ namespace EmptyBraces
 				return end_time < (unscaled ? Time.unscaledTime : Time.time);
 			});
 		}
-		[Conditional("DEBUG")] public static void DrawSphere(Vector3 p, float radius, float time = 0) => DrawSphere(p, radius, Instance.DefaultColor, time);
-		[Conditional("DEBUG")]
+		[Conditional("UNITY_EDITOR")] public static void DrawSphere(Vector3 p, float radius, float time = 0) => DrawSphere(p, radius, Instance.DefaultColor, time);
+		[Conditional("UNITY_EDITOR")]
 		public static void DrawSphere(Vector3 p, float radius, Color c, float span = 0, bool unscaled = false)
 		{
 			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
@@ -54,8 +54,8 @@ namespace EmptyBraces
 				return end_time < (unscaled ? Time.unscaledTime : Time.time);
 			});
 		}
-		[Conditional("DEBUG")] public static void DrawWireSphere(Vector3 p, float radius, float span = 0) => DrawWireSphere(p, radius, Instance.DefaultColor, span);
-		[Conditional("DEBUG")]
+		[Conditional("UNITY_EDITOR")] public static void DrawWireSphere(Vector3 p, float radius, float span = 0) => DrawWireSphere(p, radius, Instance.DefaultColor, span);
+		[Conditional("UNITY_EDITOR")]
 		public static void DrawWireSphere(Vector3 p, float radius, Color c, float span = 0, bool unscaled = false)
 		{
 			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
@@ -66,8 +66,8 @@ namespace EmptyBraces
 				return end_time < (unscaled ? Time.unscaledTime : Time.time);
 			});
 		}
-		[Conditional("DEBUG")] public static void DrawCube(Vector3 p, Vector3 size, Quaternion r, float span = 0) => DrawCube(p, size, r, Instance.DefaultColor, span);
-		[Conditional("DEBUG")]
+		[Conditional("UNITY_EDITOR")] public static void DrawCube(Vector3 p, Vector3 size, Quaternion r, float span = 0) => DrawCube(p, size, r, Instance.DefaultColor, span);
+		[Conditional("UNITY_EDITOR")]
 		public static void DrawCube(Vector3 p, Vector3 size, Quaternion r, Color c, float span = 0, bool unscaled = false)
 		{
 			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
@@ -80,8 +80,8 @@ namespace EmptyBraces
 				return end_time < (unscaled ? Time.unscaledTime : Time.time);
 			});
 		}
-		[Conditional("DEBUG")] public static void DrawWireCube(Vector3 p, Vector3 size, Quaternion r, float span = 0) => DrawWireCube(p, size, r, Instance.DefaultColor, span);
-		[Conditional("DEBUG")]
+		[Conditional("UNITY_EDITOR")] public static void DrawWireCube(Vector3 p, Vector3 size, Quaternion r, float span = 0) => DrawWireCube(p, size, r, Instance.DefaultColor, span);
+		[Conditional("UNITY_EDITOR")]
 		public static void DrawWireCube(Vector3 p, Vector3 size, Quaternion r, Color c, float span = 0, bool unscaled = false)
 		{
 			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
@@ -94,8 +94,8 @@ namespace EmptyBraces
 				return end_time < (unscaled ? Time.unscaledTime : Time.time);
 			});
 		}
-		[Conditional("DEBUG")] public static void DrawLine(Vector3 p1, Vector3 p2, float span = 0) => DrawLine(p1, p2, Instance.DefaultColor, span);
-		[Conditional("DEBUG")]
+		[Conditional("UNITY_EDITOR")] public static void DrawLine(Vector3 p1, Vector3 p2, float span = 0) => DrawLine(p1, p2, Instance.DefaultColor, span);
+		[Conditional("UNITY_EDITOR")]
 		public static void DrawLine(Vector3 p1, Vector3 p2, Color c, float span = 0, bool unscaled = false)
 		{
 			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
@@ -106,7 +106,7 @@ namespace EmptyBraces
 				return end_time < (unscaled ? Time.unscaledTime : Time.time);
 			});
 		}
-		[Conditional("DEBUG")]
+		[Conditional("UNITY_EDITOR")]
 		public static void RemoveAllGizmos()
 		{
 			Instance._gizmoRenderList.Clear();

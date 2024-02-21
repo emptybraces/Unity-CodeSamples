@@ -50,7 +50,7 @@ namespace EmptyBraces.TextFileParser
 			foreach (var line in lines)
 			{
 				++line_no;
-				if (line.StartsWith("/") || line.Trim() == "")
+				if (line.StartsWith("/", StringComparison.Ordinal) || line.Trim() == "")
 					continue;
 				var splits = line.Split(k_Split, StringSplitOptions.RemoveEmptyEntries);
 				if (0 == splits.Length)
@@ -99,7 +99,7 @@ namespace EmptyBraces.TextFileParser
 				s_idx = e_idx + 2; /*改行コードは2charある様子*/
 
 				++line_no;
-				if (line.StartsWith("//") || line.IsEmpty)
+				if (line.StartsWith("//", StringComparison.Ordinal) || line.IsEmpty)
 					continue;
 				// keyの検出
 				cn.log(line_no);

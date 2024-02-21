@@ -54,10 +54,10 @@ namespace EmptyBraces.TextFileParser
 			{
 				++line_no;
 				var trimmed_line = line.Trim();
-				if (line.StartsWith("/") || trimmed_line == "")
+				if (line.StartsWith("/", StringComparison.Ordinal) || trimmed_line == "")
 					continue;
 				// セクションを検出
-				if (trimmed_line.StartsWith(k_SectionID))
+				if (trimmed_line.StartsWith(k_SectionID, StringComparison.Ordinal))
 				{
 					// 前のセクションを保存
 					__AddActions(last_key, tmp);
