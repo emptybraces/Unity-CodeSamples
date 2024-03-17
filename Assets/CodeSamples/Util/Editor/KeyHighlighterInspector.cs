@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace EmptyBraces.Editor
+namespace Emptybraces.Editor
 {
 	// 複数選択編集させないようにする
 	[CustomEditor(typeof(KeyHighlighter))]

@@ -2,7 +2,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EmptyBraces.TextFileParser
+namespace Emptybraces.TextFileParser
 {
 	public class Main : MonoBehaviour
 	{

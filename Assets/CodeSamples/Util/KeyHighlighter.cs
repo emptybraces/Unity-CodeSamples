@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EmptyBraces
+namespace Emptybraces
 {
 	[RequireComponent(typeof(Image))]
 	public class KeyHighlighter : MonoBehaviour

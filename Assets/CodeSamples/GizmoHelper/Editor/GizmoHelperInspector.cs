@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace EmptyBraces.Editor
+namespace Emptybraces.Editor
 {
 	[CustomEditor(typeof(GizmoHelper))]
 	public class GizmoHelperInspector : UnityEditor.Editor

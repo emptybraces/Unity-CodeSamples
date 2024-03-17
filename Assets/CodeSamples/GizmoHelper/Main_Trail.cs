@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EmptyBraces.GizmoHelperScene
+namespace Emptybraces.GizmoHelperScene
 {
 	public class Main_Trail : MonoBehaviour
 	{

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace EmptyBraces
+namespace Emptybraces
 {
 	[System.Serializable]
 	public class SaveData
@@ -9,10 +9,15 @@ namespace EmptyBraces
 		public string Version;
 		public int SaveCount;
 		public List<ProjectileData> ProjectileDataList = new();
+		public List<TestDataAbstractClass> TestDataAbstractList = new(); // 表示されない。
+		public List<TestDataBaseClass> TestDataDerivedList = new(); // 親クラスでインスタンス化
+		[SerializeReference] public List<TestDataBaseClass> TestDataPolymorphismList = new();
 
 		public void Init()
 		{
 			Version = Application.version;
+			TestDataDerivedList.Add(new TestDataDerivedClass());
+			TestDataPolymorphismList.Add(new TestDataDerivedClass());
 		}
 	}
 
@@ -24,5 +29,21 @@ namespace EmptyBraces
 		public Vector3 Rotation;
 		public Vector3 Velocity;
 		public Vector3 AngularVelocity;
+	}
+
+	[System.Serializable]
+	public abstract class TestDataAbstractClass
+	{
+		public int N;
+	}
+	[System.Serializable]
+	public class TestDataBaseClass
+	{
+		public int N;
+	}
+	[System.Serializable]
+	public class TestDataDerivedClass : TestDataBaseClass
+	{
+		public int NN;
 	}
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.Assertions;
 
-namespace EmptyBraces
+namespace Emptybraces
 {
 	public static partial class SaveLoad
 	{

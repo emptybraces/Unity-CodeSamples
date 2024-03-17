@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EmptyBraces.ChangeWindowMode
+namespace Emptybraces.ChangeWindowMode
 {
 	public enum Mode { Windowed, Borderless, Fullscreen }
 	public class Main : MonoBehaviour

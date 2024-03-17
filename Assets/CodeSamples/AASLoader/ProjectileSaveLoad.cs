@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EmptyBraces
+namespace Emptybraces
 {
 	[RequireComponent(typeof(Projectile))]
 	public class ProjectileSaveLoad : MonoBehaviour

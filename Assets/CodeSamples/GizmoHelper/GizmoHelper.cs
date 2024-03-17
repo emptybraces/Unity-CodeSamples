@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-namespace EmptyBraces
+namespace Emptybraces
 {
 	[AddComponentMenu("")]
 	public class GizmoHelper : MonoBehaviour

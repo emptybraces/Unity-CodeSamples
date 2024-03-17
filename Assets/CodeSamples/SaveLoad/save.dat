@@ -1,5 +1,32 @@
 {
     "Version": "0.1.0",
-    "SaveCount": 30000,
-    "ProjectileDataList": []
+    "SaveCount": 1,
+    "ProjectileDataList": [],
+    "TestDataDerivedList": [
+        {
+            "N": 0
+        }
+    ],
+    "TestDataPolymorphismList": [
+        {
+            "rid": 1000
+        }
+    ],
+    "references": {
+        "version": 2,
+        "RefIds": [
+            {
+                "rid": 1000,
+                "type": {
+                    "class": "TestDataDerivedClass",
+                    "ns": "Emptybraces",
+                    "asm": "Assembly-CSharp"
+                },
+                "data": {
+                    "N": 0,
+                    "NN": 0
+                }
+            }
+        ]
+    }
 }

@@ -5,7 +5,7 @@ using UnityEditor.XR.Management;
 using UnityEditor.XR.Management.Metadata;
 using UnityEngine.XR.OpenXR;
 
-namespace EmptyBraces.Editor
+namespace Emptybraces.Editor
 {
 	public static class CustomTopBarMenu
 	{

@@ -6,7 +6,7 @@ using System.IO;
 using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 
-namespace EmptyBraces.TextFileParser
+namespace Emptybraces.TextFileParser
 {
 	public static class CustomFormat
 	{

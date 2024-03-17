@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace EmptyBraces.GizmoHelperScene
+namespace Emptybraces.GizmoHelperScene
 {
 	public class Main_Raycast2d : MonoBehaviour
 	{

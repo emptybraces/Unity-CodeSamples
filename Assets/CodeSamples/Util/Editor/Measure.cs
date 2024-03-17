@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-namespace EmptyBraces.Editor
+namespace Emptybraces.Editor
 {
 	public readonly struct Measure : IDisposable
 	{

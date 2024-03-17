@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EmptyBraces.Editor
+namespace Emptybraces.Editor
 {
 	[CreateAssetMenu(menuName = "CustomMenu/" + nameof(SaveDataViewer))]
 	public class SaveDataViewer : ScriptableObject

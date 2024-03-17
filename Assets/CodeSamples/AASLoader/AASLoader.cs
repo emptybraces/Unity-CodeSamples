@@ -6,7 +6,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.Assertions;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace EmptyBraces
+namespace Emptybraces
 {
 	public static class AASLoader
 	{
