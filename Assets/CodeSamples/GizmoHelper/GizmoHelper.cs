@@ -24,6 +24,7 @@ namespace Emptybraces
 		}
 		static GizmoHelper s_instance;
 		List<Func<bool>> _gizmoRenderList = new();
+
 		void OnDrawGizmos()
 		{
 			for (int i = 0; i < _gizmoRenderList.Count; ++i)
@@ -105,6 +106,27 @@ namespace Emptybraces
 				Gizmos.DrawLine(p1, p2);
 				return end_time < (unscaled ? Time.unscaledTime : Time.time);
 			});
+		}
+		[Conditional("UNITY_EDITOR")] public static void DrawBezier(Vector3 p1, Vector3 p2, Vector3 p3, float span = 0) => DrawBezier(p1, p2, p3, Instance.DefaultColor, span);
+		[Conditional("UNITY_EDITOR")]
+		public static void DrawBezier(Vector3 p1, Vector3 p2, Vector3 p3, Color c, float span = 0, bool unscaled = false)
+		{
+			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			Instance._gizmoRenderList.Add(() =>
+			{
+				Gizmos.color = c;
+				var prev = p1;
+				const int cnt = 8;
+				float f = 1 / (float)cnt;
+				for (int i = 1; i <= cnt; ++i)
+				{
+					var next = __Bezier2d(p1, p2, p3, i * f);
+					Gizmos.DrawLine(prev, next);
+					prev = next;
+				}
+				return end_time < (unscaled ? Time.unscaledTime : Time.time);
+			});
+			static Vector3 __Bezier2d(Vector3 p0, Vector3 p1, Vector3 p2, float t) => (1.0f - t) * (1.0f - t) * p0 + 2.0f * (1.0f - t) * t * p1 + t * t * p2;
 		}
 		[Conditional("UNITY_EDITOR")]
 		public static void RemoveAllGizmos()

@@ -14,5 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data:
     Version: 0.1.0
-    SaveCount: 30000
+    SaveCount: 3
     ProjectileDataList: []
+    TestDataDerivedList:
+    - N: 0
+    TestDataPolymorphismList:
+    - rid: 7885339164063563842
+  references:
+    version: 2
+    RefIds:
+    - rid: 7885339164063563842
+      type: {class: TestDataDerivedClass, ns: Emptybraces, asm: Assembly-CSharp}
+      data:
+        N: 0
+        NN: 0

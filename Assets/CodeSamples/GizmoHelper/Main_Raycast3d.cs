@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Emptybraces.GizmoHelperScene
 {
@@ -14,7 +15,7 @@ namespace Emptybraces.GizmoHelperScene
 		[SerializeField] int _gizmoLifeTime = 5;
 		[SerializeField] int _raycastEmitInterval = 10;
 		RaycastHit[] _raycastHits = new RaycastHit[3];
-		enum RaycastType { Ray, Box, Circle }
+		enum RaycastType { Ray, Box, Circle, Bezier }
 		RaycastType _raycastType;
 		MaterialPropertyBlock _mpbHit;
 
@@ -50,14 +51,15 @@ namespace Emptybraces.GizmoHelperScene
 					var hit_count = 0;
 					switch (_raycastType)
 					{
+						case RaycastType.Ray:
+						case RaycastType.Bezier:
+							hit_count = Physics.RaycastNonAlloc(ray, _raycastHits, _rayLength);
+							break;
 						case RaycastType.Box:
 							hit_count = Physics.BoxCastNonAlloc(ray.origin, Vector3.one * _raycastSize * 0.5f/*half extent*/, ray.direction, _raycastHits, boxcast_rotation, _rayLength);
 							break;
 						case RaycastType.Circle:
 							hit_count = Physics.SphereCastNonAlloc(ray, _raycastSize, _raycastHits, _rayLength);
-							break;
-						default:
-							hit_count = Physics.RaycastNonAlloc(ray, _raycastHits, _rayLength);
 							break;
 					}
 
@@ -68,13 +70,18 @@ namespace Emptybraces.GizmoHelperScene
 						for (int i = 0; i < hit_count; ++i)
 						{
 							_raycastHits[i].collider.GetComponent<MeshRenderer>().SetPropertyBlock(_mpbHit);
+							var hit_pt = ray.origin + ray.direction * _raycastHits[i].distance;
+							var color = Color.HSVToRGB(Mathf.Repeat(Time.time, 1), 1f, .3f);
 							switch (_raycastType)
 							{
 								case RaycastType.Box:
-									GizmoHelper.DrawCube(ray.origin + ray.direction * _raycastHits[i].distance, Vector3.one * _raycastSize, boxcast_rotation, Color.HSVToRGB(Mathf.Repeat(Time.time, 1), 1f, .3f), _gizmoLifeTime);
+									GizmoHelper.DrawCube(hit_pt, Vector3.one * _raycastSize, boxcast_rotation, color, _gizmoLifeTime);
 									break;
 								case RaycastType.Circle:
-									GizmoHelper.DrawSphere(ray.origin + ray.direction * _raycastHits[i].distance, _raycastSize, Color.HSVToRGB(Mathf.Repeat(Time.time, 1), 1f, .3f), _gizmoLifeTime);
+									GizmoHelper.DrawSphere(hit_pt, _raycastSize, color, _gizmoLifeTime);
+									break;
+								case RaycastType.Bezier:
+									GizmoHelper.DrawBezier(ray.origin, (ray.origin + hit_pt) / 2 + Random.onUnitSphere * Mathf.Lerp(4, 10, Random.value), hit_pt, color, _gizmoLifeTime);
 									break;
 							}
 						}
