@@ -30,7 +30,7 @@ namespace Emptybraces.CoordInterchange
 			_procs = new (string, Action, Action<bool>)[] {
 				("１．マウス位置をワールド位置へ変換", () => {
 					var sp = Input.mousePosition;
-					sp.z = 1 + (Mathf.Sin(Time.time * 2) + 1) / 2 * 9;
+					sp.z = Mathf.Lerp(1, 10, Mathf.InverseLerp(-1, 1, Mathf.Sin(Time.time * 2)));
 					var wp = Camera.main.ScreenToWorldPoint(sp);
 					_cursor3d.position = wp;
 				}, null),
@@ -118,7 +118,7 @@ namespace Emptybraces.CoordInterchange
 							_tmCoord.color = Color.red;
 						}
 					}
-					_screenSpaceCanvas.planeDistance = 1 + (Mathf.Sin(Time.time * 2) + 1) / 2 * 9;
+					_screenSpaceCanvas.planeDistance = Mathf.Lerp(1, 10, Mathf.InverseLerp(-1, 1, Mathf.Sin(Time.time * 2)));
 				}, isEnter => {
 					__ScreenSpaceCanvasEnable(isEnter);
 					_screenSpaceCanvas.planeDistance = 1;
