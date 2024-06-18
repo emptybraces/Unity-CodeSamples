@@ -1,4 +1,4 @@
-# Unity_CodeSamples
+# Unity Code Samples
 
 ## [GizmoHelper](Assets/CodeSamples/GizmoHelper)
 Implementation example of easy handling of Gizmos on runtime.
