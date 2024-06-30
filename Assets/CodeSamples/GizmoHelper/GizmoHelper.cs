@@ -8,8 +8,8 @@ namespace Emptybraces
 	[AddComponentMenu("")]
 	public class GizmoHelper : MonoBehaviour
 	{
-		public Color DefaultColor = Color.white;
-		public static GizmoHelper Instance
+		Color DefaultColor = Color.white;
+		static GizmoHelper Instance
 		{
 			get
 			{
@@ -31,7 +31,7 @@ namespace Emptybraces
 				if (_gizmoRenderList[i]())
 					_gizmoRenderList.RemoveAt(i--);
 		}
-		[Conditional("UNITY_EDITOR")] public void DrawRay(Vector3 p, Vector3 dir, float time = 0) => DrawRay(p, dir, DefaultColor, time);
+		[Conditional("UNITY_EDITOR")] public static void DrawRay(Vector3 p, Vector3 dir, float time = 0) => DrawRay(p, dir, Instance.DefaultColor, time);
 		[Conditional("UNITY_EDITOR")]
 		public static void DrawRay(Vector3 p, Vector3 dir, Color c, float span = 0, bool unscaled = false)
 		{
@@ -133,5 +133,10 @@ namespace Emptybraces
 		{
 			Instance._gizmoRenderList.Clear();
 		}
+
+		// [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+		// static void _DomainReset()
+		// {
+		// }
 	}
 }

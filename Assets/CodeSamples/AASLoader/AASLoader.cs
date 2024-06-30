@@ -129,10 +129,14 @@ namespace Emptybraces
 		static void OnBeforeSceneLoad()
 		{
 			// アプリケーションが終了したときに解放する
-			Application.quitting += () =>
-			{
-				Release();
-			};
+			Application.quitting += Release;
 		}
+#if UNITY_EDITOR
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+		static void _DomainReset()
+		{
+			Application.quitting -= Release;
+		}
+#endif
 	}
 }
