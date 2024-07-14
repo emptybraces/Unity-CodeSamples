@@ -6,6 +6,7 @@ namespace Emptybraces.VarAcrossScenes
 	{
 		[SerializeField] StartSceneArgs _startSceneArgs;
 		[SerializeField] TMPro.TMP_Text _text;
+		static StartSceneArgs s_startSceneArgs;
 
 		[System.Serializable]
 		public class StartSceneArgs
@@ -17,7 +18,6 @@ namespace Emptybraces.VarAcrossScenes
 				return $"{TestIdx}, {TestStr}";
 			}
 		}
-		static StartSceneArgs s_startSceneArgs;
 
 		void Awake()
 		{
