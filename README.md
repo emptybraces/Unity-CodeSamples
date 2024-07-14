@@ -1,5 +1,9 @@
 # Unity Code Samples
 
+## [VarAcrossScenes](Assets/CodeSamples/VarAcrossScenes)
+Simply example that passes variables to the next scene.
+![varacrossscenes](https://github.com/user-attachments/assets/776acf95-e5f3-4f76-ba88-b46c8d03087e)
+
 ## [GizmoHelper](Assets/CodeSamples/GizmoHelper)
 Implementation example of easy handling of Gizmos on runtime.
 ![gizmohelper_fps10](https://github.com/emptybraces/Unity_CodeSamples/assets/1441835/75485c64-ab34-4635-bdc3-dad409196608)
