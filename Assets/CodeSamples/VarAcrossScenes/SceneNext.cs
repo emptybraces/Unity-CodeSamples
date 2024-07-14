@@ -1,0 +1,47 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+namespace Emptybraces.VarAcrossScenes
+{
+	public class SceneNext : MonoBehaviour
+	{
+		[SerializeField] StartSceneArgs _startSceneArgs;
+		[SerializeField] TMPro.TMP_Text _text;
+
+		[System.Serializable]
+		public class StartSceneArgs
+		{
+			public int TestIdx;
+			public string TestStr;
+			public override string ToString()
+			{
+				return $"{TestIdx}, {TestStr}";
+			}
+		}
+		static StartSceneArgs s_startSceneArgs;
+
+		void Awake()
+		{
+			if (s_startSceneArgs == null)
+				s_startSceneArgs = _startSceneArgs;
+			_text.text = s_startSceneArgs.ToString();
+		}
+
+		public static void LoadScene(StartSceneArgs args)
+		{
+			s_startSceneArgs = args;
+			SceneManager.LoadScene("Scene_VarAcrossScenes.next");
+		}
+
+		public void OnClick()
+		{
+			Main.LoadScene();
+		}
+#if UNITY_EDITOR
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+		static void _DomainReset()
+		{
+			s_startSceneArgs = null;
+		}
+#endif
+	}
+}
