@@ -21,8 +21,17 @@ namespace Emptybraces.Editor
 		void New()
 		{
 			Data = new SaveData();
-			Data.Init();
 			Save();
+		}
+		[ContextMenu("Add SerializeReference Data/TestDataClass1")]
+		void Add_TestDataClass1()
+		{
+			Data.AddPolymList<TestDataClass1>();
+		}
+		[ContextMenu("Add SerializeReference Data/TestDataClass2")]
+		void Add_TestDataClass2()
+		{
+			Data.AddPolymList<TestDataClass2>();
 		}
 	}
 }

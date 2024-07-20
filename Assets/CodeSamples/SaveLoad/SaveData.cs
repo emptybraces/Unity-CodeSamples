@@ -9,15 +9,15 @@ namespace Emptybraces
 		public string Version;
 		public int SaveCount;
 		public List<ProjectileData> ProjectileDataList = new();
-		public List<TestDataAbstractClass> TestDataAbstractList = new(); // 表示されない。
-		public List<TestDataBaseClass> TestDataDerivedList = new(); // 親クラスでインスタンス化
-		[SerializeReference] public List<TestDataBaseClass> TestDataPolymorphismList = new();
+		[SerializeReference] public List<TestDataBase> TestDataList = new();
 
 		public void Init()
 		{
 			Version = Application.version;
-			TestDataDerivedList.Add(new TestDataDerivedClass());
-			TestDataPolymorphismList.Add(new TestDataDerivedClass());
+		}
+		public void AddPolymList<T>() where T : TestDataBase, new()
+		{
+			TestDataList.Add(new T());
 		}
 	}
 
@@ -32,18 +32,18 @@ namespace Emptybraces
 	}
 
 	[System.Serializable]
-	public abstract class TestDataAbstractClass
+	public abstract class TestDataBase
 	{
-		public int N;
+		public int BaseData;
 	}
 	[System.Serializable]
-	public class TestDataBaseClass
+	public class TestDataClass1 : TestDataBase
 	{
-		public int N;
+		public int Child1Data;
 	}
 	[System.Serializable]
-	public class TestDataDerivedClass : TestDataBaseClass
+	public class TestDataClass2 : TestDataBase
 	{
-		public int NN;
+		public int Child2_Data;
 	}
 }
