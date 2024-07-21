@@ -17,7 +17,6 @@ namespace Emptybraces
 
 		public static void Save(SaveData data = null)
 		{
-			Assert.IsTrue(data != null);
 			var dirpath = Path.GetDirectoryName(k_PathSaveData);
 			// ディレクトリを作成する
 			if (!Directory.Exists(dirpath))
