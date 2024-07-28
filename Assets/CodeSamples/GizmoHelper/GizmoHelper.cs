@@ -43,6 +43,30 @@ namespace Emptybraces
 				return end_time < (unscaled ? Time.unscaledTime : Time.time);
 			});
 		}
+		[Conditional("UNITY_EDITOR")] public static void DrawMesh(Mesh mesh, int submeshIndex, Vector3 p, Quaternion r, Vector3 s, float time = 0) => DrawMesh(mesh, submeshIndex, p, r, s, Instance.DefaultColor, time);
+		[Conditional("UNITY_EDITOR")]
+		public static void DrawMesh(Mesh mesh, int submeshIndex, Vector3 p, Quaternion r, Vector3 s, Color c, float span = 0, bool unscaled = false)
+		{
+			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			Instance._gizmoRenderList.Add(() =>
+			{
+				Gizmos.color = c;
+				Gizmos.DrawMesh(mesh, submeshIndex, p, r, s);
+				return end_time < (unscaled ? Time.unscaledTime : Time.time);
+			});
+		}
+		[Conditional("UNITY_EDITOR")] public static void DrawWireMesh(Mesh mesh, int submeshIndex, Vector3 p, Quaternion r, Vector3 s, float time = 0) => DrawWireMesh(mesh, submeshIndex, p, r, s, Instance.DefaultColor, time);
+		[Conditional("UNITY_EDITOR")]
+		public static void DrawWireMesh(Mesh mesh, int submeshIndex, Vector3 p, Quaternion r, Vector3 s, Color c, float span = 0, bool unscaled = false)
+		{
+			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			Instance._gizmoRenderList.Add(() =>
+			{
+				Gizmos.color = c;
+				Gizmos.DrawWireMesh(mesh, submeshIndex, p, r, s);
+				return end_time < (unscaled ? Time.unscaledTime : Time.time);
+			});
+		}
 		[Conditional("UNITY_EDITOR")] public static void DrawSphere(Vector3 p, float radius, float time = 0) => DrawSphere(p, radius, Instance.DefaultColor, time);
 		[Conditional("UNITY_EDITOR")]
 		public static void DrawSphere(Vector3 p, float radius, Color c, float span = 0, bool unscaled = false)
