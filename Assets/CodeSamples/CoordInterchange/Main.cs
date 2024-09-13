@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using TMPro;
 namespace Emptybraces.CoordInterchange
@@ -21,7 +21,7 @@ namespace Emptybraces.CoordInterchange
 		void OnGUI()
 		{
 			GUI.Label(new Rect(10, Screen.height - 50, 300, 20), _procs[_idx].name, UnityEditor.EditorStyles.boldLabel);
-			GUI.Label(new Rect(10, Screen.height - 30, 300, 20), $"RMB:モード変更", UnityEditor.EditorStyles.boldLabel);
+			GUI.Label(new Rect(10, Screen.height - 30, 300, 20), $"RMB:Change Mode", UnityEditor.EditorStyles.boldLabel);
 		}
 #endif
 		void Start()

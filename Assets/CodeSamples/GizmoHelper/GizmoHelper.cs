@@ -35,7 +35,7 @@ namespace Emptybraces
 		[Conditional("UNITY_EDITOR")]
 		public static void DrawRay(Vector3 p, Vector3 dir, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			var end_time = (unscaled ? Time.unscaledTime : Time.time) + span;
 			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;
@@ -47,7 +47,7 @@ namespace Emptybraces
 		[Conditional("UNITY_EDITOR")]
 		public static void DrawMesh(Mesh mesh, int submeshIndex, Vector3 p, Quaternion r, Vector3 s, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			var end_time = (unscaled ? Time.unscaledTime : Time.time) + span;
 			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;
@@ -59,7 +59,7 @@ namespace Emptybraces
 		[Conditional("UNITY_EDITOR")]
 		public static void DrawWireMesh(Mesh mesh, int submeshIndex, Vector3 p, Quaternion r, Vector3 s, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			var end_time = (unscaled ? Time.unscaledTime : Time.time) + span;
 			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;
@@ -71,7 +71,7 @@ namespace Emptybraces
 		[Conditional("UNITY_EDITOR")]
 		public static void DrawSphere(Vector3 p, float radius, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			var end_time = (unscaled ? Time.unscaledTime : Time.time) + span;
 			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;
@@ -83,7 +83,7 @@ namespace Emptybraces
 		[Conditional("UNITY_EDITOR")]
 		public static void DrawWireSphere(Vector3 p, float radius, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			var end_time = (unscaled ? Time.unscaledTime : Time.time) + span;
 			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;
@@ -95,7 +95,7 @@ namespace Emptybraces
 		[Conditional("UNITY_EDITOR")]
 		public static void DrawCube(Vector3 p, Vector3 size, Quaternion r, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			var end_time = (unscaled ? Time.unscaledTime : Time.time) + span;
 			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;
@@ -109,7 +109,7 @@ namespace Emptybraces
 		[Conditional("UNITY_EDITOR")]
 		public static void DrawWireCube(Vector3 p, Vector3 size, Quaternion r, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			var end_time = (unscaled ? Time.unscaledTime : Time.time) + span;
 			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;
@@ -123,7 +123,7 @@ namespace Emptybraces
 		[Conditional("UNITY_EDITOR")]
 		public static void DrawLine(Vector3 p1, Vector3 p2, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			var end_time = (unscaled ? Time.unscaledTime : Time.time) + span;
 			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;
@@ -135,7 +135,7 @@ namespace Emptybraces
 		[Conditional("UNITY_EDITOR")]
 		public static void DrawBezier(Vector3 p1, Vector3 p2, Vector3 p3, Color c, float span = 0, bool unscaled = false)
 		{
-			var end_time = unscaled ? Time.unscaledTime : Time.time + span;
+			var end_time = (unscaled ? Time.unscaledTime : Time.time) + span;
 			Instance._gizmoRenderList.Add(() =>
 			{
 				Gizmos.color = c;

@@ -21,12 +21,21 @@
       "dependencies": {},
       "hash": "5611384bf7b6e1ed993fcf1cd5da7ab08744e7b6"
     },
+    "com.emptybraces.splines_onreached": {
+      "version": "https://github.com/emptybraces/Unity-Splines-OnReached.git?path=Assets/upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.splines": "2.5.2"
+      },
+      "hash": "1f043c7d0b3cce37cd8fdd09f2e6a72ad5bac620"
+    },
     "com.emptybraces.transform_inspector": {
-      "version": "https://github.com/emptybraces/Unity_TransformInspector.git?path=Assets/Plugins/TransformInspector",
+      "version": "https://github.com/emptybraces/Unity-TransformInspector.git?path=Assets/upm",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "b76d184d84f0f7c05d69ca8f081d7ec425bc39b2"
+      "hash": "74c84e1802591906653eb5bcbac9753efcfe2db0"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
@@ -166,6 +175,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.settings-manager": {
+      "version": "2.0.1",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.shadergraph": {
       "version": "16.0.6",
       "depth": 1,
@@ -174,6 +190,17 @@
         "com.unity.render-pipelines.core": "16.0.6",
         "com.unity.searcher": "4.9.2"
       }
+    },
+    "com.unity.splines": {
+      "version": "2.5.2",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.settings-manager": "1.0.3",
+        "com.unity.mathematics": "1.2.1",
+        "com.unity.ugui": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
       "version": "1.3.9",
