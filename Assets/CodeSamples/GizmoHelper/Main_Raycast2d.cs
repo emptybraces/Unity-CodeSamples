@@ -10,22 +10,23 @@ namespace Emptybraces.GizmoHelperScene
 		[SerializeField] float _raycastSize = 1;
 		[SerializeField] float _gizmoLifeTime = .5f;
 		[SerializeField] int _raycastEmitInterval = 10;
+		[SerializeField] UnityEngine.UI.Text _uiText;
 		RaycastHit2D[] _raycastHits = new RaycastHit2D[3];
 		enum RaycastType { Ray, Box, Circle }
 		RaycastType _raycastType;
-#if UNITY_EDITOR
-		void OnGUI()
+		void Start()
 		{
-			GUI.Label(new Rect(10, Screen.height - 50, 200, 20), $"LMB:レイ発射", UnityEditor.EditorStyles.boldLabel);
-			GUI.Label(new Rect(10, Screen.height - 30, 200, 20), $"RMB:レイ変更({_raycastType})", UnityEditor.EditorStyles.boldLabel);
+			_uiText.text = $"LMB:レイ発射({_raycastType})";
 		}
-#endif
 		void Update()
 		{
 			foreach (var i in _targets)
 				i.Rotate(Vector3.forward * 40 * Time.deltaTime);
 			if (Input.GetMouseButtonDown(1))
+			{
 				_raycastType = (RaycastType)Mathf.Repeat((int)_raycastType + 1, Enum.GetValues(typeof(RaycastType)).Length);
+				_uiText.text = $"LMB:レイ発射({_raycastType})";
+			}
 			if (Time.frameCount % _raycastEmitInterval == 0)
 			{
 				foreach (var i in _targets)

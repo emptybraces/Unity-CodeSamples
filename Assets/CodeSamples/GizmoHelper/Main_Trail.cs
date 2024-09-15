@@ -9,12 +9,7 @@ namespace Emptybraces.GizmoHelperScene
 		[SerializeField] float _speed = 1;
 		[SerializeField] float _offset = 5;
 		[SerializeField] Transform box, sphere;
-#if UNITY_EDITOR
-		void OnGUI()
-		{
-			GUI.Label(new Rect(10, Screen.height - 50, 200, 20), $"LMB:ギズモ表示", UnityEditor.EditorStyles.boldLabel);
-		}
-#endif
+
 		void Update()
 		{
 			var p = Vector3.zero;

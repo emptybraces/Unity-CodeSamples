@@ -11,19 +11,13 @@ namespace Emptybraces.CoordInterchange
 		[SerializeField] RectTransform _overlayCanvasTargetRect;
 		[SerializeField] RectTransform _screenSpaceCanvasCursor;
 		[SerializeField] RectTransform _screenSpaceCanvasTargetRect;
+		[SerializeField] UnityEngine.UI.Text _uiText;
 		Canvas _screenSpaceCanvas;
 		[SerializeField] TMP_Text _tmCoord;
 		[SerializeField] float _boxExtent = .5f;
 		int _idx = 0;
 		(string name, Action update, Action<bool> enterExit)[] _procs;
 
-#if UNITY_EDITOR
-		void OnGUI()
-		{
-			GUI.Label(new Rect(10, Screen.height - 50, 300, 20), _procs[_idx].name, UnityEditor.EditorStyles.boldLabel);
-			GUI.Label(new Rect(10, Screen.height - 30, 300, 20), $"RMB:Change Mode", UnityEditor.EditorStyles.boldLabel);
-		}
-#endif
 		void Start()
 		{
 			_screenSpaceCanvas = _screenSpaceCanvasCursor.GetComponentInParent<Canvas>(true);
@@ -144,6 +138,7 @@ namespace Emptybraces.CoordInterchange
 				_procs[_idx].enterExit?.Invoke(false);
 				_idx = (_idx + 1) % _procs.Length;
 				_procs[_idx].enterExit?.Invoke(true);
+				_uiText.text = _procs[_idx].name;
 			}
 			_tmCoord.color = Color.white;
 			_procs[_idx].update?.Invoke();

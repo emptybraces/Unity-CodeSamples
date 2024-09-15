@@ -14,22 +14,18 @@ namespace Emptybraces.GizmoHelperScene
 		[SerializeField] float _camAnglePower = 1;
 		[SerializeField] int _gizmoLifeTime = 5;
 		[SerializeField] int _raycastEmitInterval = 10;
+		[SerializeField] UnityEngine.UI.Text _uiText;
+
 		RaycastHit[] _raycastHits = new RaycastHit[3];
 		enum RaycastType { Ray, Box, Circle, Bezier }
 		RaycastType _raycastType;
 		MaterialPropertyBlock _mpbHit;
 
-#if UNITY_EDITOR
-		void OnGUI()
-		{
-			GUI.Label(new Rect(10, Screen.height - 50, 200, 20), $"LMB:レイ発射", UnityEditor.EditorStyles.boldLabel);
-			GUI.Label(new Rect(10, Screen.height - 30, 200, 20), $"RMB:レイ変更({_raycastType})", UnityEditor.EditorStyles.boldLabel);
-		}
-#endif
 		void Start()
 		{
 			_mpbHit = new();
 			_mpbHit.SetColor("_BaseColor", Color.red);
+			_uiText.text = $"LMB:レイ発射({_raycastType})";
 		}
 
 		void Update()
@@ -38,7 +34,10 @@ namespace Emptybraces.GizmoHelperScene
 			foreach (var i in _targets)
 				i.Rotate(Vector3.forward * 40 * Time.deltaTime);
 			if (Input.GetMouseButtonDown(1))
+			{
 				_raycastType = (RaycastType)Mathf.Repeat((int)_raycastType + 1, Enum.GetValues(typeof(RaycastType)).Length);
+				_uiText.text = $"LMB:レイ発射({_raycastType})";
+			}
 
 			if (Time.frameCount % _raycastEmitInterval == 0)
 			{
