@@ -1,6 +1,6 @@
 # Unity Code Samples
 
-## [VarAcrossScenes](Assets/CodeSamples/VarAcrossScenes)
+## [PassingDataNextScene](Assets/CodeSamples/PassingDataNextScene)
 Simply example that passes variables to the next scene.
 ![varacrossscenes](https://github.com/user-attachments/assets/776acf95-e5f3-4f76-ba88-b46c8d03087e)
 
