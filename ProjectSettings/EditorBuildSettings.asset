@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/CodeSamples/Scene_WindowMode.unity
     guid: 61a72fa1868607f41ba2371719f83763
   - enabled: 1
-    path: Assets/CodeSamples/Scene_VarAcrossScenes.unity
+    path: Assets/CodeSamples/Scene_PassingDataNextScene.unity
     guid: 5e7c9ddcb48c43446b506f5d451058c0
   - enabled: 1
-    path: Assets/CodeSamples/Scene_VarAcrossScenes.next.unity
+    path: Assets/CodeSamples/Scene_PassingDataNextScene.next.unity
     guid: e45bd47623d6a9641a47335a8d5ea877
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 6cf0f1e2e90aaf4418597119ae30193e,

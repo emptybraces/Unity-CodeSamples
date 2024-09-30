@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-namespace Emptybraces.VarAcrossScenes
+namespace Emptybraces.PassingDataNextScene
 {
 	public class SceneNext : MonoBehaviour
 	{
@@ -29,7 +29,7 @@ namespace Emptybraces.VarAcrossScenes
 		public static void LoadScene(StartSceneArgs args)
 		{
 			s_startSceneArgs = args;
-			SceneManager.LoadScene("Scene_VarAcrossScenes.next");
+			SceneManager.LoadScene("Scene_PassingDataNextScene.next");
 		}
 
 		public void OnClick()
