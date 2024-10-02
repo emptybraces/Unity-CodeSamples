@@ -96,8 +96,10 @@ namespace Emptybraces.Editor
 				else
 					_sheets = new string[1] { "csv" };
 				_tables = new DataTable[_sheets.Length];
+#pragma warning disable CS0618
 				for (int i = 0; i < _tables.Length; ++i)
 					_tables[i] = MiniExcel.QueryAsDataTable(_filepath, false, !_filepath.EndsWith(".csv") ? _sheets[i] : null);
+#pragma warning restore CS0618
 			}
 			// セーブボタン
 			r.x += r.width;

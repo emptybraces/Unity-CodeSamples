@@ -12,21 +12,21 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "651ab6b1544b3f3022bed1d40954e0fcc626aacb"
+      "hash": "24b7a7590cf9764864750dfac3f8f2363dafef5c"
     },
     "com.emptybraces.hierarchydecorator": {
-      "version": "https://github.com/emptybraces/Unity_HierarchyDecorator.git",
+      "version": "https://github.com/emptybraces/Unity-HierarchyDecorator.git?path=upm",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "5611384bf7b6e1ed993fcf1cd5da7ab08744e7b6"
+      "hash": "0b13a7307bffec9e45c84cd557c345dd8096328b"
     },
     "com.emptybraces.transform_inspector": {
       "version": "https://github.com/emptybraces/Unity-TransformInspector.git?path=Assets/upm",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "74c84e1802591906653eb5bcbac9753efcfe2db0"
+      "hash": "69f1a2a8b99bf95c6503d9b6197825352027aafe"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
