@@ -1,0 +1,570 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9153678782366460501
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54b2b810b00659488ce48f1eada0c14, type: 3}
+  m_Name: Annotation
+  m_EditorClassIdentifier: 
+  m_Time: 1.1333333333333333
+  <parent>k__BackingField: {fileID: 0}
+  title: 
+  color:
+    r: 0.9433962
+    g: 0.16464934
+    b: 0.16464934
+    a: 0.98039216
+  showLineOverlay: 1
+  description: 
+--- !u!114 &-9055695392323766356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5a9742c8ad7084ca76561cc7da1fed, type: 3}
+  m_Name: UIImageColorPlayableAsset(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  template:
+    Color: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &-8366274635242344972
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54b2b810b00659488ce48f1eada0c14, type: 3}
+  m_Name: Annotation
+  m_EditorClassIdentifier: 
+  m_Time: 1.5
+  <parent>k__BackingField: {fileID: 0}
+  title: 
+  color:
+    r: 0.22841759
+    g: 0.5242958
+    b: 0.8207547
+    a: 0.5
+  showLineOverlay: 1
+  description: 
+--- !u!114 &-8035636048512923140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54b2b810b00659488ce48f1eada0c14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Time: 2.183333333333333
+  <parent>k__BackingField: {fileID: 0}
+  title: Annotation
+  color:
+    r: 1
+    g: 1
+    b: 1
+    a: 0.5
+  showLineOverlay: 1
+  description: 'SignalReceiverWithString '
+--- !u!114 &-7134268938644262336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1494a0e2c4448bc4f9b3df9581d1e394, type: 3}
+  m_Name: Custom/Event
+  m_EditorClassIdentifier: 
+  m_Time: 3.9333333333333336
+  EmitOnce: 0
+  Retroactive: 0
+  ShowLineOverlay: 0
+  ShowLineOverlayColor: {r: 1, g: 1, b: 1, a: 0.5}
+  ShowLineOverlayWidth: 6
+  ShowLineOverlayWidthOrder: 0
+  Description: 
+  Receivers:
+  - ExposedReference:
+      exposedName: 5e3506ab1a96fd14187878e8ec8a551c
+      defaultValue: {fileID: 0}
+  - ExposedReference:
+      exposedName: eddf1dbb36ffc5441aec9508b54f0de2
+      defaultValue: {fileID: 0}
+--- !u!114 &-6932611588722318926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54b2b810b00659488ce48f1eada0c14, type: 3}
+  m_Name: Annotation
+  m_EditorClassIdentifier: 
+  m_Time: 1.5
+  <parent>k__BackingField: {fileID: 0}
+  title: 
+  color:
+    r: 0.5566038
+    g: 0.26517445
+    b: 0.26517445
+    a: 0.5
+  showLineOverlay: 1
+  description: 
+--- !u!114 &-6593605080862139334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54b2b810b00659488ce48f1eada0c14, type: 3}
+  m_Name: Annotation
+  m_EditorClassIdentifier: 
+  m_Time: 2.216666666666667
+  <parent>k__BackingField: {fileID: 3148288445680045027}
+  title: 
+  color:
+    r: 1
+    g: 1
+    b: 1
+    a: 0.5
+  showLineOverlay: 1
+  description: 
+--- !u!114 &-6531317969722202041
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9247468ae614f8d4cbd5809e1022ccb8, type: 3}
+  m_Name: UI Image Color Track
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 5.133333333333333
+    m_ClipIn: 0
+    m_Asset: {fileID: -9055695392323766356}
+    m_Duration: 1
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -6531317969722202041}
+    m_EaseInDuration: 0.5
+    m_EaseOutDuration: 0.5
+    m_BlendInDuration: -1
+    m_BlendOutDuration: 0.2999999999999998
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: UIImageColorPlayableAsset
+  - m_Version: 1
+    m_Start: 5.833333333333333
+    m_ClipIn: 0
+    m_Asset: {fileID: -6183695762410116534}
+    m_Duration: 1
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -6531317969722202041}
+    m_EaseInDuration: 0.5
+    m_EaseOutDuration: 0.5
+    m_BlendInDuration: 0.2999999999999998
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: UIImageColorPlayableAsset
+  m_Markers:
+    m_Objects: []
+--- !u!114 &-6183695762410116534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5a9742c8ad7084ca76561cc7da1fed, type: 3}
+  m_Name: UIImageColorPlayableAsset(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  template:
+    Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
+  m_Name: Sample
+  m_EditorClassIdentifier: 
+  m_Version: 0
+  m_Tracks:
+  - {fileID: -6531317969722202041}
+  - {fileID: 5051740536176308127}
+  m_FixedDuration: 0
+  m_EditorSettings:
+    m_Framerate: 60
+    m_ScenePreview: 1
+  m_DurationMode: 0
+  m_MarkerTrack: {fileID: 3148288445680045027}
+--- !u!114 &67247833058058980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54b2b810b00659488ce48f1eada0c14, type: 3}
+  m_Name: Annotation
+  m_EditorClassIdentifier: 
+  m_Time: 3.8
+  <parent>k__BackingField: {fileID: 3148288445680045027}
+  title: 
+  color:
+    r: 1
+    g: 1
+    b: 1
+    a: 0.5
+  showLineOverlay: 1
+  description: "ker> markers)\r\n        {\r\n            if (!markers.All(marker
+    => marker is AnnotationMarker))\r\n            {\r\n                return ActionValidity.NotApplicable;\r\n           
+    }\r\n\r\n            // get the current text content of the clipboard\r\n           
+    string clipboardTextContent = EditorGUIUtility.systemCopyBuffer;\r\n           
+    if (clipboardTextContent.Length == 0)\r\n            {\r\n                return
+    ActionValidity.Invalid;\r\n            }\r\n"
+--- !u!114 &643194258527162552
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1494a0e2c4448bc4f9b3df9581d1e394, type: 3}
+  m_Name: Custom/Event
+  m_EditorClassIdentifier: 
+  m_Time: 0.8166666666666667
+  EmitOnce: 0
+  Retroactive: 0
+  ShowLineOverlay: 1
+  ShowLineOverlayColor: {r: 1, g: 1, b: 1, a: 0.5}
+  ShowLineOverlayWidth: 6
+  ShowLineOverlayWidthOrder: 0
+  Description: 
+  Receivers:
+  - ExposedReference:
+      exposedName: 25345909214f46548b866c9abf270ac1
+      defaultValue: {fileID: 0}
+--- !u!114 &3148288445680045027
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a16748d9461eae46a725db9776d5390, type: 3}
+  m_Name: Markers
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: -6593605080862139334}
+    - {fileID: 8114195957169729778}
+    - {fileID: 67247833058058980}
+    - {fileID: 6424341542292193142}
+    - {fileID: 643194258527162552}
+    - {fileID: -7134268938644262336}
+--- !u!114 &5051740536176308127
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71a05d69559ea849a7c9882d06ba3e2, type: 3}
+  m_Name: Generic Notify Track
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 0
+    m_ClipIn: 0
+    m_Asset: {fileID: 5153310325765649932}
+    m_Duration: 5.133333333333333
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 5051740536176308127}
+    m_EaseInDuration: 1.68
+    m_EaseOutDuration: 1.62
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: GenericNotifyPlayableAsset
+  m_Markers:
+    m_Objects: []
+  _isNotifyOnEditorMode: 1
+  _isNotifyOnlyChangedWeight: 0
+--- !u!114 &5153310325765649932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4297606e83dc24ba97df740ab24e5c, type: 3}
+  m_Name: GenericNotifyPlayableAsset
+  m_EditorClassIdentifier: 
+--- !u!114 &6424341542292193142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1494a0e2c4448bc4f9b3df9581d1e394, type: 3}
+  m_Name: Custom/Event
+  m_EditorClassIdentifier: 
+  m_Time: 2.4
+  EmitOnce: 0
+  Retroactive: 0
+  ShowLineOverlay: 0
+  ShowLineOverlayColor: {r: 1, g: 1, b: 1, a: 0.5}
+  ShowLineOverlayWidth: 6
+  ShowLineOverlayWidthOrder: 0
+  Description: 
+  Receivers:
+  - ExposedReference:
+      exposedName: 5e3506ab1a96fd14187878e8ec8a551c
+      defaultValue: {fileID: 0}
+  - ExposedReference:
+      exposedName: eddf1dbb36ffc5441aec9508b54f0de2
+      defaultValue: {fileID: 0}
+--- !u!114 &8114195957169729778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54b2b810b00659488ce48f1eada0c14, type: 3}
+  m_Name: Annotation
+  m_EditorClassIdentifier: 
+  m_Time: 2.7
+  <parent>k__BackingField: {fileID: 3148288445680045027}
+  title: 
+  color:
+    r: 1
+    g: 1
+    b: 1
+    a: 0.5
+  showLineOverlay: 1
+  description: 
+--- !u!114 &8794036268175303778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1494a0e2c4448bc4f9b3df9581d1e394, type: 3}
+  m_Name: EmptyBraces/Event
+  m_EditorClassIdentifier: 
+  m_Time: 15.566666666666666
+  EmitOnce: 0
+  Retroactive: 0
+  ShowLineOverlay: 1
+  ShowLineOverlayColor: {r: 1, g: 1, b: 1, a: 0.5}
+  ShowLineOverlayWidth: 6
+  ShowLineOverlayWidthOrder: 0
+  Description: 
+  Receivers: []
