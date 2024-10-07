@@ -57,5 +57,6 @@
         "Temp/": true,
         "UserSettings/": true
     },
-    "dotnet.defaultSolution": "github_Unity_CodeSamples.sln"
+    "dotnet.defaultSolution": "github_Unity_CodeSamples.sln",
+    "editor.insertSpaces": false
 }

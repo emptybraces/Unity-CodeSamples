@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using Timeline.Samples;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -7,6 +8,7 @@ namespace Emptybraces.Timeline
     [System.Serializable, DisplayName("EmptyBraces/SimpleAtaptablePlayable")]
     public class SimpleProgrammablePlayableAsset : PlayableAsset
     {
+        [NoFoldOut]
         public SimpleProgrammablePlayableBehaviour template = new SimpleProgrammablePlayableBehaviour();
         public override Playable CreatePlayable(PlayableGraph graph, GameObject go)
         {
