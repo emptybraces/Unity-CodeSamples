@@ -265,7 +265,7 @@ Transform:
   m_GameObject: {fileID: 386446852}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.13267294, y: -0.029957771, z: 0}
+  m_LocalPosition: {x: 0.0047263503, y: -0.1426067, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -489,6 +489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 556831741}
   - component: {fileID: 556831740}
+  - component: {fileID: 556831742}
   m_Layer: 0
   m_Name: test_simple_notify (1)
   m_TagString: Untagged
@@ -525,6 +526,21 @@ Transform:
   - {fileID: 1454879784}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &556831742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556831739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals: []
+    m_Events: []
 --- !u!1 &571204263
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,16 +1123,34 @@ PlayableDirector:
     value: {fileID: 1522376574}
   m_ExposedReferences:
     m_References:
+    - d5d46dba2c581094dbec4e6d405155ba: {fileID: 0}
+    - 94c54a9e24086cf4eb2dd2229c74ca7e: {fileID: 556831739}
     - 2fb93454e5ec78b44982cc08f093ce86: {fileID: 556831740}
+    - a388491fb13a40e4ba70d881490b893f: {fileID: 556831739}
+    - c5059b1e83b4d444798eaaf59b068fd0: {fileID: 0}
     - ca4a54a9f768908448672452c63c245f: {fileID: 0}
-    - 5e3506ab1a96fd14187878e8ec8a551c: {fileID: 556831740}
-    - eddf1dbb36ffc5441aec9508b54f0de2: {fileID: 939198203}
+    - feaa770b0262a2c4a997a164172f1e5b: {fileID: 556831739}
+    - 1207f1a07a6145f4f8a70e984eb640e2: {fileID: 556831739}
+    - 5e3506ab1a96fd14187878e8ec8a551c: {fileID: 556831739}
+    - fa3446564b6e333458cdb7a2c50e3679: {fileID: 556831739}
+    - c3f692c4cc7f6c5498db4148f703a7c1: {fileID: 939198202}
+    - bdc0149fd070e2b48afab1997aefeb78: {fileID: 556831739}
+    - eddf1dbb36ffc5441aec9508b54f0de2: {fileID: 556831739}
+    - c2fd355b741f25b4c9827346fb562cb7: {fileID: 939198202}
     - f693539fe03249b44b1e2d33eecdc94d: {fileID: 2036938008}
+    - b7517a40f76ab744ab78cc0ea89ef1a8: {fileID: 939198202}
     - 25345909214f46548b866c9abf270ac1: {fileID: 556831740}
     - fcd6ccac459073c4d8fa86c500822410: {fileID: 0}
+    - 719924c1d891bb54d8d7e532517233dc: {fileID: 939198203}
+    - f790c9cf042b45d44b2bb9facadf6512: {fileID: 556831740}
+    - fd8ef8334610dbb4d826ec62b1f38d21: {fileID: 939198202}
     - f80a4a141eaff5449a782833e93de417: {fileID: 939198203}
+    - e9b5b6d4f5d7aa640a3327cdee1ec2b5: {fileID: 556831739}
+    - c2899bd99db78604881259e54de13772: {fileID: 939198202}
     - 3c93d0e9fd57a6b419f52ed62a3cd0b2: {fileID: 0}
+    - 6fc2c03445515ea4997b6ed19c14ca7f: {fileID: 556831739}
     - 7e01035962ab946459e2df6bacf09cd7: {fileID: 2036938008}
+    - fde869a9dca082c498477c5e3d9ac063: {fileID: 939198202}
 --- !u!4 &1447071740
 Transform:
   m_ObjectHideFlags: 0
@@ -1446,7 +1480,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 3082270647
+    rgba: 2038004089
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3

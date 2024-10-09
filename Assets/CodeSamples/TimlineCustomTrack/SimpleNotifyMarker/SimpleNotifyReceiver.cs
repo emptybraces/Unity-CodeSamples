@@ -11,9 +11,10 @@ namespace Emptybraces.Timeline
             var resolver = origin.GetGraph().GetResolver();
             foreach (var receiver in marker.Receivers)
             {
-                if (receiver.ExposedReference.Resolve(resolver) is ISimpleNotifyReceiver notify)
+                if (receiver.ExposedReference.Resolve(resolver) is GameObject g)
                 {
-                    notify.OnNotify();
+					foreach (var c in g.GetComponents<ISimpleNotifyReceiver>())
+	                    c.OnNotify();
                 }
             }
         }

@@ -3,7 +3,6 @@ using System;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
-using Timeline.Samples;
 using System.ComponentModel;
 
 namespace Emptybraces.Timeline

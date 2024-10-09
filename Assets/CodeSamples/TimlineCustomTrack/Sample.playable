@@ -80,7 +80,7 @@ MonoBehaviour:
     a: 0.5
   showLineOverlay: 1
   description: 'SignalReceiverWithString '
---- !u!114 &-7134268938644262336
+--- !u!114 &-7231784149645490214
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,22 +90,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1494a0e2c4448bc4f9b3df9581d1e394, type: 3}
-  m_Name: Custom/Event
+  m_Name: EmptyBraces/SimpleNotifyMarker
   m_EditorClassIdentifier: 
-  m_Time: 3.9333333333333336
+  m_Time: 2.35
   EmitOnce: 0
   Retroactive: 0
-  ShowLineOverlay: 0
+  ShowLineOverlay: 1
   ShowLineOverlayColor: {r: 1, g: 1, b: 1, a: 0.5}
   ShowLineOverlayWidth: 6
   ShowLineOverlayWidthOrder: 0
   Description: 
   Receivers:
   - ExposedReference:
-      exposedName: 5e3506ab1a96fd14187878e8ec8a551c
+      exposedName: 1207f1a07a6145f4f8a70e984eb640e2
       defaultValue: {fileID: 0}
   - ExposedReference:
-      exposedName: eddf1dbb36ffc5441aec9508b54f0de2
+      exposedName: b7517a40f76ab744ab78cc0ea89ef1a8
       defaultValue: {fileID: 0}
 --- !u!114 &-6932611588722318926
 MonoBehaviour:
@@ -376,6 +376,30 @@ MonoBehaviour:
     string clipboardTextContent = EditorGUIUtility.systemCopyBuffer;\r\n           
     if (clipboardTextContent.Length == 0)\r\n            {\r\n                return
     ActionValidity.Invalid;\r\n            }\r\n"
+--- !u!114 &452168004441715802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1494a0e2c4448bc4f9b3df9581d1e394, type: 3}
+  m_Name: EmptyBraces/SimpleNotifyMarker
+  m_EditorClassIdentifier: 
+  m_Time: 0.8
+  EmitOnce: 0
+  Retroactive: 0
+  ShowLineOverlay: 1
+  ShowLineOverlayColor: {r: 1, g: 1, b: 1, a: 0.5}
+  ShowLineOverlayWidth: 6
+  ShowLineOverlayWidthOrder: 0
+  Description: 
+  Receivers:
+  - ExposedReference:
+      exposedName: bdc0149fd070e2b48afab1997aefeb78
+      defaultValue: {fileID: 0}
 --- !u!114 &643194258527162552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -386,9 +410,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1494a0e2c4448bc4f9b3df9581d1e394, type: 3}
-  m_Name: Custom/Event
+  m_Name: SimpleNotifyMarker
   m_EditorClassIdentifier: 
-  m_Time: 0.8166666666666667
+  m_Time: 10.6
   EmitOnce: 0
   Retroactive: 0
   ShowLineOverlay: 1
@@ -399,6 +423,30 @@ MonoBehaviour:
   Receivers:
   - ExposedReference:
       exposedName: 25345909214f46548b866c9abf270ac1
+      defaultValue: {fileID: 0}
+--- !u!114 &1836150804591113700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1494a0e2c4448bc4f9b3df9581d1e394, type: 3}
+  m_Name: EmptyBraces/SimpleNotifyMarker
+  m_EditorClassIdentifier: 
+  m_Time: 0.75
+  EmitOnce: 0
+  Retroactive: 0
+  ShowLineOverlay: 1
+  ShowLineOverlayColor: {r: 1, g: 1, b: 1, a: 0.5}
+  ShowLineOverlayWidth: 6
+  ShowLineOverlayWidthOrder: 0
+  Description: 
+  Receivers:
+  - ExposedReference:
+      exposedName: 94c54a9e24086cf4eb2dd2229c74ca7e
       defaultValue: {fileID: 0}
 --- !u!114 &1925035620708673271
 MonoBehaviour:
@@ -587,9 +635,10 @@ MonoBehaviour:
     - {fileID: -6593605080862139334}
     - {fileID: 8114195957169729778}
     - {fileID: 67247833058058980}
-    - {fileID: 6424341542292193142}
     - {fileID: 643194258527162552}
-    - {fileID: -7134268938644262336}
+    - {fileID: 1836150804591113700}
+    - {fileID: -7231784149645490214}
+    - {fileID: 7629029755203989916}
 --- !u!114 &5051740536176308127
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -699,33 +748,6 @@ MonoBehaviour:
   template:
     IsNotifyOnEditor: 1
     IsNotifyOnlyChangedWeight: 0
---- !u!114 &6424341542292193142
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1494a0e2c4448bc4f9b3df9581d1e394, type: 3}
-  m_Name: Custom/Event
-  m_EditorClassIdentifier: 
-  m_Time: 2.4
-  EmitOnce: 0
-  Retroactive: 0
-  ShowLineOverlay: 0
-  ShowLineOverlayColor: {r: 1, g: 1, b: 1, a: 0.5}
-  ShowLineOverlayWidth: 6
-  ShowLineOverlayWidthOrder: 0
-  Description: 
-  Receivers:
-  - ExposedReference:
-      exposedName: 5e3506ab1a96fd14187878e8ec8a551c
-      defaultValue: {fileID: 0}
-  - ExposedReference:
-      exposedName: eddf1dbb36ffc5441aec9508b54f0de2
-      defaultValue: {fileID: 0}
 --- !u!114 &6607053979355153543
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -744,6 +766,36 @@ MonoBehaviour:
       Enabled: 0
       Value: 24
     Text: test 2
+--- !u!114 &7629029755203989916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1494a0e2c4448bc4f9b3df9581d1e394, type: 3}
+  m_Name: EmptyBraces/SimpleNotifyMarker
+  m_EditorClassIdentifier: 
+  m_Time: 3.9166666666666665
+  EmitOnce: 0
+  Retroactive: 0
+  ShowLineOverlay: 1
+  ShowLineOverlayColor: {r: 1, g: 1, b: 1, a: 0.5}
+  ShowLineOverlayWidth: 6
+  ShowLineOverlayWidthOrder: 0
+  Description: 
+  Receivers:
+  - ExposedReference:
+      exposedName: feaa770b0262a2c4a997a164172f1e5b
+      defaultValue: {fileID: 0}
+  - ExposedReference:
+      exposedName: fde869a9dca082c498477c5e3d9ac063
+      defaultValue: {fileID: 0}
+  - ExposedReference:
+      exposedName: 6fc2c03445515ea4997b6ed19c14ca7f
+      defaultValue: {fileID: 0}
 --- !u!114 &8114195957169729778
 MonoBehaviour:
   m_ObjectHideFlags: 1
