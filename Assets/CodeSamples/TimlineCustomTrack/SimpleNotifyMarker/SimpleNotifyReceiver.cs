@@ -9,9 +9,9 @@ namespace Emptybraces.Timeline
             if (notification is not SimpleNotifyMarker marker)
                 return;
             var resolver = origin.GetGraph().GetResolver();
-            foreach (var receiver in marker.Receivers)
+            foreach (var receiver in marker.ExposedReceivers)
             {
-                if (receiver.ExposedReference.Resolve(resolver) is GameObject g)
+                if (receiver.Resolve(resolver) is GameObject g)
                 {
 					foreach (var c in g.GetComponents<ISimpleNotifyReceiver>())
 	                    c.OnNotify();

@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -219,8 +219,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!4 &203844589
 Transform:
   m_ObjectHideFlags: 0
@@ -255,7 +259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &386446853
 Transform:
   m_ObjectHideFlags: 0
@@ -265,8 +269,8 @@ Transform:
   m_GameObject: {fileID: 386446852}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0047263503, y: -0.1426067, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0.35249454, y: 0.20782125, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2036938009}
@@ -338,6 +342,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -431,6 +436,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -704,6 +710,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -868,7 +875,7 @@ Transform:
   m_GameObject: {fileID: 855716939}
   serializedVersion: 2
   m_LocalRotation: {x: -0.042224344, y: 0, z: 0, w: 0.9991082}
-  m_LocalPosition: {x: 0, y: 1, z: -2.92}
+  m_LocalPosition: {x: -0.000000013247268, y: 1, z: -2.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1121,17 +1128,21 @@ PlayableDirector:
     value: {fileID: 2036938010}
   - key: {fileID: 1925035620708673271, guid: 59093dd7acdfb704d980b8a0c0decef1, type: 2}
     value: {fileID: 1522376574}
+  - key: {fileID: -322836523696327079, guid: 59093dd7acdfb704d980b8a0c0decef1, type: 2}
+    value: {fileID: 855716944}
   m_ExposedReferences:
     m_References:
     - d5d46dba2c581094dbec4e6d405155ba: {fileID: 0}
     - 94c54a9e24086cf4eb2dd2229c74ca7e: {fileID: 556831739}
     - 2fb93454e5ec78b44982cc08f093ce86: {fileID: 556831740}
     - a388491fb13a40e4ba70d881490b893f: {fileID: 556831739}
+    - 210ff1ca22257f14b8bad4d3498fb428: {fileID: 939198202}
     - c5059b1e83b4d444798eaaf59b068fd0: {fileID: 0}
     - ca4a54a9f768908448672452c63c245f: {fileID: 0}
     - feaa770b0262a2c4a997a164172f1e5b: {fileID: 556831739}
     - 1207f1a07a6145f4f8a70e984eb640e2: {fileID: 556831739}
     - 5e3506ab1a96fd14187878e8ec8a551c: {fileID: 556831739}
+    - dbbec1dad114d6b408e6039cbe5a4564: {fileID: 556831739}
     - fa3446564b6e333458cdb7a2c50e3679: {fileID: 556831739}
     - c3f692c4cc7f6c5498db4148f703a7c1: {fileID: 939198202}
     - bdc0149fd070e2b48afab1997aefeb78: {fileID: 556831739}
@@ -1139,8 +1150,11 @@ PlayableDirector:
     - c2fd355b741f25b4c9827346fb562cb7: {fileID: 939198202}
     - f693539fe03249b44b1e2d33eecdc94d: {fileID: 2036938008}
     - b7517a40f76ab744ab78cc0ea89ef1a8: {fileID: 939198202}
+    - 4d9f848ca62f6e847b6cfe7986db46ef: {fileID: 556831739}
     - 25345909214f46548b866c9abf270ac1: {fileID: 556831740}
+    - af64d54aa538bab4aa9c9338575b7cba: {fileID: 556831739}
     - fcd6ccac459073c4d8fa86c500822410: {fileID: 0}
+    - 0a63bebd1e2886942bad908a257739ca: {fileID: 939198202}
     - 719924c1d891bb54d8d7e532517233dc: {fileID: 939198203}
     - f790c9cf042b45d44b2bb9facadf6512: {fileID: 556831740}
     - fd8ef8334610dbb4d826ec62b1f38d21: {fileID: 939198202}
@@ -1148,6 +1162,7 @@ PlayableDirector:
     - e9b5b6d4f5d7aa640a3327cdee1ec2b5: {fileID: 556831739}
     - c2899bd99db78604881259e54de13772: {fileID: 939198202}
     - 3c93d0e9fd57a6b419f52ed62a3cd0b2: {fileID: 0}
+    - 7467f8fcb494dce438b170bb64316d9e: {fileID: 556831739}
     - 6fc2c03445515ea4997b6ed19c14ca7f: {fileID: 556831739}
     - 7e01035962ab946459e2df6bacf09cd7: {fileID: 2036938008}
     - fde869a9dca082c498477c5e3d9ac063: {fileID: 939198202}
@@ -1280,6 +1295,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1433,6 +1449,7 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
 --- !u!1 &1522376573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,7 +1497,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 2038004089
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3

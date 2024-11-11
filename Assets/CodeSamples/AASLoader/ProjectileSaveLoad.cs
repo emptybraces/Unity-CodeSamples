@@ -33,7 +33,7 @@ namespace Emptybraces
 					AASKey = t.name,
 					Position = t.position,
 					Rotation = t.eulerAngles,
-					Velocity = rb.velocity,
+					Velocity = rb.linearVelocity,
 					AngularVelocity = rb.angularVelocity,
 				});
 			}
@@ -55,7 +55,7 @@ namespace Emptybraces
 				var rb = instance.GetComponent<Rigidbody>();
 				rb.transform.position = i.Position;
 				rb.transform.eulerAngles = i.Rotation;
-				rb.velocity = i.Velocity;
+				rb.linearVelocity = i.Velocity;
 				rb.angularVelocity = i.AngularVelocity;
 			}
 		}

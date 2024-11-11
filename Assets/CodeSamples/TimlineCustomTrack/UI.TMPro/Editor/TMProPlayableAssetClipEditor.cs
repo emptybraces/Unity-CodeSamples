@@ -1,6 +1,5 @@
 
 using UnityEditor.Timeline;
-using UnityEngine;
 using UnityEngine.Timeline;
 
 namespace Emptybraces.Timeline

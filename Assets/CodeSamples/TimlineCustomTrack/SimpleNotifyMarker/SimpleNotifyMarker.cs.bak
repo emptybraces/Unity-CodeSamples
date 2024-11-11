@@ -14,7 +14,7 @@ namespace Emptybraces.Timeline
 		public bool Retroactive;
 		public bool ShowLineOverlay = true;
 		public Color ShowLineOverlayColor = new Color(1.0f, 1.0f, 1.0f, 0.5f);
-		[Min(0)] public float ShowLineOverlayWidth = 3;
+		[Min(0)] public float ShowLineOverlayWidth = 6;
 		[TextArea(2, 5)] public string Description;
 
 		[Header("Receivers")]
@@ -39,8 +39,6 @@ namespace Emptybraces.Timeline
 #if UNITY_EDITOR
 		void OnValidate()
 		{
-			if (ExposedReceivers == null)
-				return;
 			List<PropertyName> hash = new();
 			for (int i = 0; i < ExposedReceivers.Length; i++)
 			{

@@ -1,40 +1,44 @@
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 
 namespace Emptybraces.Timeline
 {
-    [System.Serializable]
-    public class UIImageColorPlayableBehaviour : PlayableBehaviour
-    {
-        public Color Color;
-        // // Called when the owning graph starts playing
-        // public override void OnGraphStart(Playable playable)
-        // {
-        //     cn.log("start");
-        // }
+	[System.Serializable]
+	public class UIImageColorPlayableBehaviour : PlayableBehaviour
+	{
+		public Color Color;
+		// public bool IsDefaltColorClear = true;
+		// Image _trackBinding;
+		// Color _defaultColor;
+		// public override void ProcessFrame(Playable playable, FrameData info, object playerData)
+		// {
+		// 	SetDefaults(playerData as Image);
+		// 	if (_trackBinding == null)
+		// 		return;
+		// 	_trackBinding.color = Color.Lerp(IsDefaltColorClear ? Color.clear : _defaultColor, Color, info.weight);
+		// }
 
-        // // Called when the owning graph stops playing
-        // public override void OnGraphStop(Playable playable)
-        // {
-        //     cn.log("stop");
-        // }
+		// public override void OnPlayableDestroy(Playable playable)
+		// {
+		// 	RestoreDefaults();
+		// }
 
-        // // Called when the state of the playable is set to Play
-        // public override void OnBehaviourPlay(Playable playable, FrameData info)
-        // {
-        //     cn.log("Play");
-        // }
-
-        // // Called when the state of the playable is set to Paused
-        // public override void OnBehaviourPause(Playable playable, FrameData info)
-        // {
-        //     cn.log("Pasuse");
-        // }
-
-        // // Called each frame while the state is set to Play
-        // public override void PrepareFrame(Playable playable, FrameData info)
-        // {
-        //     cn.log("Frame");
-        // }
-    }
+		// void SetDefaults(Image image)
+		// {
+		// 	if (image == _trackBinding)
+		// 		return;
+		// 	_trackBinding = image;
+		// 	if (_trackBinding != null)
+		// 	{
+		// 		_defaultColor = _trackBinding.color;
+		// 	}
+		// }
+		// void RestoreDefaults()
+		// {
+		// 	if (_trackBinding == null)
+		// 		return;
+		// 	_trackBinding.color = _defaultColor;
+		// }
+	}
 }

@@ -1,6 +1,5 @@
 
 using TMPro;
-using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
@@ -16,7 +15,7 @@ namespace Emptybraces.Timeline
     [TrackColor(0.1394896f, 0.4411765f, 0.3413077f)]
     [TrackClipType(typeof(TMProPlayableAsset))]
     [TrackBindingType(typeof(TMP_Text))]
-    public class TMProTrack : TrackAsset
+    public class TMProTrackAsset : TrackAsset
     {
         // Creates a runtime instance of the track, represented by a PlayableBehaviour.
         // The runtime instance performs mixing on the timeline clips.

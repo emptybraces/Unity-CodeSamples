@@ -5,17 +5,17 @@ using UnityEngine.Timeline;
 
 namespace Emptybraces.Timeline
 {
-	[System.Serializable, DisplayName("EmptyBraces/UI/ImageAlpha")]
-	public class UIImageColorPlayableAsset : PlayableAsset, ITimelineClipAsset
+	[System.Serializable, DisplayName("EmptyBraces/Object Shake")]
+	public class ObjectShakePlayableAsset : PlayableAsset, ITimelineClipAsset
 	{
 		public ClipCaps clipCaps => ClipCaps.Blending | ClipCaps.Extrapolation;
 		[NoFoldOut]
 		[NotKeyable] // NotKeyable used to prevent Timeline from making fields available for animation.
-		public UIImageColorPlayableBehaviour template = new UIImageColorPlayableBehaviour();
+		public ObjectShakePlayableBehaviour template = new ObjectShakePlayableBehaviour();
 		public override Playable CreatePlayable(PlayableGraph graph, GameObject go)
 		{
 			// return Playable.Create(graph);
-			return ScriptPlayable<UIImageColorPlayableBehaviour>.Create(graph, template);
+			return ScriptPlayable<ObjectShakePlayableBehaviour>.Create(graph, template);
 		}
 	}
 
