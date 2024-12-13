@@ -25,9 +25,12 @@ namespace Emptybraces.Timeline
 			_target.position = _origin + vibration * info.weight;
 		}
 
-		public override void OnPlayableDestroy(Playable playable)
+		public override void OnBehaviourPause(Playable playable, FrameData info)
 		{
-			RestoreDefaults();
+			if (info.effectivePlayState == PlayState.Paused)
+			{
+				RestoreDefaults();
+			}
 		}
 
 		void SetDefaults(Transform t)
