@@ -23,7 +23,7 @@ MonoBehaviour:
     Weight: 1
   MaterialColorBindings: []
   MaterialUVBindings: []
-  IsBinary: 0
+  IsBinary: 1
   OverrideBlink: 0
   OverrideLookAt: 0
   OverrideMouth: 0
