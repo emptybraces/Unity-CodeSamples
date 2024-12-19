@@ -1,5 +1,9 @@
 # Unity Code Samples
 
+## [TimelineCustomTrack](Assets/CodeSamples/TimlineCustomTrack)
+Example implementation of custom clips, tracks, callbacks for the Timeline.
+![customtimeline](https://github.com/user-attachments/assets/9e7b8387-5810-4715-931e-b4513439b7d8)
+
 ## [PassingDataNextScene](Assets/CodeSamples/PassingDataNextScene)
 Simply example that passes variables to the next scene.
 ![varacrossscenes](https://github.com/user-attachments/assets/776acf95-e5f3-4f76-ba88-b46c8d03087e)
