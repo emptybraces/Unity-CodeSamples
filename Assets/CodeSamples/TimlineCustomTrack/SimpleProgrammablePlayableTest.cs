@@ -20,7 +20,10 @@ namespace Emptybraces.Timeline
 			if (isEnter)
 				_rb.gameObject.SetActive(true);
 			else if (isExit)
-				_rb.gameObject.SetActive(false);
+			{
+				// _rb.gameObject.SetActive(false);
+				return;
+			}
 			_rb.transform.localScale = Mathf.Lerp(0.1f, 2, value) * Vector3.one;
 			var pos = _p;
 			pos.x += (Mathf.PerlinNoise(Time.time * _speed, .1f + Time.time * _speed) - 0.5f) * _power;

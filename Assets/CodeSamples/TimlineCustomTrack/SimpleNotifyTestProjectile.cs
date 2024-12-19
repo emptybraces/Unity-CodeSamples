@@ -1,21 +1,21 @@
 using UnityEngine;
 namespace Emptybraces.Timeline
 {
-    public class SimpleNotifyTest : MonoBehaviour, ISimpleNotifyReceiver
+    public class SimpleNotifyTestProjectile : MonoBehaviour, ISimpleNotifyReceiver
     {
         [SerializeField] float _projectilePower = 5f;
-        Rigidbody _prefab;
+        [SerializeField] Rigidbody _prefab;
+        [SerializeField] Transform _parent;
         void Awake()
         {
-            _prefab = transform.GetComponentInChildren<Rigidbody>();
             _prefab.gameObject.SetActive(false);
         }
         public void OnNotify()
         {
             if (!Application.isPlaying)
                 return;
-            var rb = Instantiate(_prefab, transform);
-            Destroy(rb.gameObject, 3);
+            var rb = Instantiate(_prefab, _parent);
+            // Destroy(rb.gameObject, 3);
             ProjectileObject(rb);
         }
         void ProjectileObject(Rigidbody rb)

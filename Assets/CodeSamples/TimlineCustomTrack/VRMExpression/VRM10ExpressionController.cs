@@ -56,6 +56,7 @@ namespace Emptybraces
 				GUI.Label(rect, _keys[i].Name);
 				rect.x += k_label_width;
 				rect.y += 5; // 微調整
+				_values[i] = _vrm.Runtime.Expression.GetWeight(_keys[i]);
 				UnityEditor.EditorGUI.BeginChangeCheck();
 				_values[i] = GUI.HorizontalSlider(rect, _values[i], 0, 1);
 				if (UnityEditor.EditorGUI.EndChangeCheck())
