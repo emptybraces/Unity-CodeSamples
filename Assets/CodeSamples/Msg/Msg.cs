@@ -520,7 +520,7 @@ namespace Emptybraces
 				{
 					sb.Append($"\n - {d.Method}/{d.Target}");
 				}
-				Debug.Log(sb.ToString());
+				cn.log(sb.ToString());
 			}
 		}
 
