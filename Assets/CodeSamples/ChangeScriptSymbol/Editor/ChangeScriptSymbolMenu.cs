@@ -7,9 +7,9 @@ using UnityEngine.XR.OpenXR;
 
 namespace Emptybraces.Editor
 {
-	public static class CustomTopBarMenu
+	static class ChangeScriptSymbolMenu
 	{
-		const string menuName = "Custom";
+		const string menuName = "Tools";
 		[MenuItem(menuName + "/Define Symbol/Add VR", false)] static void _AddDefineSymbolVR() => _EditDefineSymbol(false, "VR");
 		[MenuItem(menuName + "/Define Symbol/Add VR", true)] static bool _AddDefineSymbolVRValdiate() => _EditDefineSymbolValidate(false, "VR");
 		[MenuItem(menuName + "/Define Symbol/Remove VR", false)] static void _RemoveDefineSymbolVR() => _EditDefineSymbol(true, "VR");

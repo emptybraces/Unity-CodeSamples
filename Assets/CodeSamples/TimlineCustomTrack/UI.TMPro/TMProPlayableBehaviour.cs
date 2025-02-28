@@ -1,5 +1,5 @@
 using System;
-using Nnfs.Serializable;
+using Emptybraces.Serializable;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;

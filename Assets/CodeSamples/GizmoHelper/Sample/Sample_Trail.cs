@@ -1,14 +1,15 @@
 using UnityEngine;
 
-namespace Emptybraces.GizmoHelperScene
+namespace Emptybraces.GizmoHelperSample
 {
-	public class Main_Trail : MonoBehaviour
+	public class Sample_Trail : MonoBehaviour
 	{
 		[SerializeField] float _lifeTime = .5f;
 		[SerializeField] int _drawIntervalFrame = 5;
 		[SerializeField] float _speed = 1;
 		[SerializeField] float _offset = 5;
 		[SerializeField] Transform box, sphere;
+		Vector3 _prevPos;
 
 		void Update()
 		{
@@ -30,7 +31,9 @@ namespace Emptybraces.GizmoHelperScene
 				GizmoHelper.DrawLine(box.position, sphere.position, color, _lifeTime);
 				GizmoHelper.DrawCube(box.position, box.lossyScale, box.rotation, color, _lifeTime);
 				GizmoHelper.DrawSphere(sphere.position, sphere.lossyScale.x / 2, color, _lifeTime);
+				GizmoHelper.DrawDirection(box.position, (_prevPos - box.position).normalized, Color.red, _lifeTime);
 			}
+			_prevPos = box.position;
 		}
 	}
 }

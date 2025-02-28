@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Emptybraces
+namespace Emptybraces.AASLLoaderSample
 {
 	[RequireComponent(typeof(Projectile))]
 	public class ProjectileSaveLoad : MonoBehaviour

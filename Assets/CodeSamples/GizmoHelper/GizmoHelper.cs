@@ -158,9 +158,12 @@ namespace Emptybraces
 			Instance._renderList.Clear();
 		}
 
-		// [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-		// static void _DomainReset()
-		// {
-		// }
+		[Conditional("UNITY_EDITOR")] public static void DrawDirection(Vector3 p, Vector3 dir, float span = 1) => DrawDirection(p, dir, Instance.DefaultColor, span);
+		[Conditional("UNITY_EDITOR")]
+		public static void DrawDirection(Vector3 p, Vector3 dir, Color c, float span = 1, bool unscaled = false)
+		{
+			DrawLine(p, p + dir, c, span, unscaled);
+			DrawSphere(p + dir, 0.1f, c, span, unscaled);
+		}
 	}
 }

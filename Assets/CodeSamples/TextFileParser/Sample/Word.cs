@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 using Cysharp.Threading.Tasks;
 using System.IO;
 
-namespace Emptybraces.TextFileParser
+namespace Emptybraces.TextFileParserSample
 {
 	public static class Word
 	{

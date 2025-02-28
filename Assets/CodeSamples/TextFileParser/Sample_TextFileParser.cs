@@ -2,9 +2,9 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Emptybraces.TextFileParser
+namespace Emptybraces.TextFileParserSample
 {
-	public class Main : MonoBehaviour
+	public class Sample_TextFileParser : MonoBehaviour
 	{
 		[System.Serializable]
 		class WordListField

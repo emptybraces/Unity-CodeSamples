@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using TMPro;
-namespace Emptybraces.CoordInterchange
+namespace Emptybraces.CoordInterchangeSample
 {
-	public class Main : MonoBehaviour
+	public class Sample_CoordInterchange : MonoBehaviour
 	{
 		[SerializeField] Transform _cursor3d;
 		[SerializeField] GameObject _3dPlane;

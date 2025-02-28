@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-namespace Emptybraces.PassingDataNextScene
+namespace Emptybraces.PassingDataNextSceneSample
 {
-	public class SceneNext : MonoBehaviour
+	public class Sample_PassingDataNextSceneNext : MonoBehaviour
 	{
 		[SerializeField] StartSceneArgs _startSceneArgs;
 		[SerializeField] TMPro.TMP_Text _text;
@@ -29,12 +29,12 @@ namespace Emptybraces.PassingDataNextScene
 		public static void LoadScene(StartSceneArgs args)
 		{
 			s_startSceneArgs = args;
-			SceneManager.LoadScene("Scene_PassingDataNextScene.next");
+			SceneManager.LoadScene("SampleScene_PassingDataNextScene.02_next");
 		}
 
 		public void OnClick()
 		{
-			Main.LoadScene();
+			Sample_PassingDataNextSceneStart.LoadScene();
 		}
 #if UNITY_EDITOR
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]

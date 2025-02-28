@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Nnfs.Serializable
+namespace Emptybraces.Serializable
 {
 	[System.Serializable]
 	public abstract class DrawableToggleValue

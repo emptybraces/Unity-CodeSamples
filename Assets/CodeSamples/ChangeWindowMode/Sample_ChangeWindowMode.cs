@@ -4,10 +4,10 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Emptybraces.ChangeWindowMode
+namespace Emptybraces.ChangeWindowModeSample
 {
 	public enum Mode { Windowed, Borderless, Fullscreen }
-	public class Main : MonoBehaviour
+	public class Sample_ChangeWindowMode : MonoBehaviour
 	{
 		[SerializeField] Button _buttonWindowed;
 		[SerializeField] Button _buttonBorderless;

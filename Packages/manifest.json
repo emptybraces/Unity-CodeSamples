@@ -2,7 +2,7 @@
   "dependencies": {
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
     "com.emptybraces.cn": "https://github.com/emptybraces/Unity_cn.git?path=UPM",
-    "com.emptybraces.hierarchydecorator": "https://github.com/emptybraces/Unity-HierarchyDecorator.git?path=upm",
+    "com.emptybraces.hierarchydecorator": "https://github.com/emptybraces/Unity-HierarchyDecorator.git?path=Assets/upm",
     "com.emptybraces.transform_inspector": "https://github.com/emptybraces/Unity-TransformInspector.git?path=Assets/upm",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.addressables": "2.2.2",
@@ -10,8 +10,7 @@
     "com.unity.ide.visualstudio": "2.0.22",
     "com.unity.multiplayer.center": "1.0.0",
     "com.unity.render-pipelines.universal": "17.0.3",
-    "com.unity.test-framework": "1.4.5",
-    "com.unity.timeline": "1.8.7",
+    "com.unity.timeline": "1.8.8",
     "com.unity.ugui": "2.0.0",
     "com.unity.visualscripting": "1.9.5",
     "com.vrmc.gltf": "https://github.com/vrm-c/UniVRM.git?path=/Assets/UniGLTF#v0.128.0",

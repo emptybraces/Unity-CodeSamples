@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace Emptybraces.GizmoHelperScene
+namespace Emptybraces.GizmoHelperSample
 {
-	public class Main_Raycast2d : MonoBehaviour
+	public class Sample_Raycast2d : MonoBehaviour
 	{
 		[SerializeField] Transform _raycastFrom;
 		[SerializeField] Transform[] _targets;

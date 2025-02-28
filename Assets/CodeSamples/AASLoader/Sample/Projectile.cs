@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Emptybraces
+namespace Emptybraces.AASLLoaderSample
 {
 	public class Projectile : MonoBehaviour
 	{

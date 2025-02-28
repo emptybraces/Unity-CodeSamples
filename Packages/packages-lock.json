@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "64792b672d35e43b3412fc74861f8bdbf41e3a6f"
+      "hash": "8042b29ff87dd5506d7aad72bd6d8d7405985f27"
     },
     "com.emptybraces.cn": {
       "version": "https://github.com/emptybraces/Unity_cn.git?path=UPM",
@@ -15,11 +15,11 @@
       "hash": "24b7a7590cf9764864750dfac3f8f2363dafef5c"
     },
     "com.emptybraces.hierarchydecorator": {
-      "version": "https://github.com/emptybraces/Unity-HierarchyDecorator.git?path=upm",
+      "version": "https://github.com/emptybraces/Unity-HierarchyDecorator.git?path=Assets/upm",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "0b13a7307bffec9e45c84cd557c345dd8096328b"
+      "hash": "895151c08ba333d5e802837cdf00bd9815ff6469"
     },
     "com.emptybraces.transform_inspector": {
       "version": "https://github.com/emptybraces/Unity-TransformInspector.git?path=Assets/upm",
@@ -50,7 +50,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.8.18",
+      "version": "1.8.19",
       "depth": 2,
       "source": "registry",
       "dependencies": {
@@ -73,7 +73,7 @@
     },
     "com.unity.ext.nunit": {
       "version": "2.0.5",
-      "depth": 1,
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -84,8 +84,8 @@
       "source": "builtin",
       "dependencies": {
         "com.unity.xr.interaction.toolkit": "3.0.7",
-        "com.unity.xr.oculus": "4.4.0",
-        "com.unity.xr.openxr": "1.13.2"
+        "com.unity.xr.oculus": "4.5.0",
+        "com.unity.xr.openxr": "1.14.0"
       }
     },
     "com.unity.ide.visualstudio": {
@@ -98,7 +98,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
-      "version": "1.11.2",
+      "version": "1.12.0",
       "depth": 2,
       "source": "registry",
       "dependencies": {
@@ -203,7 +203,7 @@
     },
     "com.unity.test-framework": {
       "version": "1.4.5",
-      "depth": 0,
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.ext.nunit": "2.0.3",
@@ -223,7 +223,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.8.7",
+      "version": "1.8.8",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -254,7 +254,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.core-utils": {
-      "version": "2.4.0",
+      "version": "2.5.1",
       "depth": 2,
       "source": "registry",
       "dependencies": {
@@ -301,7 +301,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.oculus": {
-      "version": "4.4.0",
+      "version": "4.5.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -310,12 +310,12 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.openxr": {
-      "version": "1.13.2",
+      "version": "1.14.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.inputsystem": "1.6.3",
-        "com.unity.xr.core-utils": "2.1.1",
+        "com.unity.xr.core-utils": "2.3.0",
         "com.unity.xr.management": "4.4.0",
         "com.unity.xr.legacyinputhelpers": "2.1.2"
       },

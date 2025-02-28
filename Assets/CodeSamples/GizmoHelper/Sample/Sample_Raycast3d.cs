@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Emptybraces.GizmoHelperScene
+namespace Emptybraces.GizmoHelperSample
 {
-	public class Main_Raycast3d : MonoBehaviour
+	public class Sample_Raycast3d : MonoBehaviour
 	{
 		[SerializeField] Transform[] _targets;
 		[SerializeField] float _rayLength = 30;

@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEditor;
-namespace Nnfs.Serializable.Drawer
+namespace Emptybraces.Serializable.Drawer
 {
 	[CustomPropertyDrawer(typeof(DrawableToggleValue), true)]
 	public class ToggleValueInspector : PropertyDrawer
