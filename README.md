@@ -2,7 +2,7 @@
 
 ## [Msg](Assets/CodeSamples/Msg)
 Example implementation of an EventBus that calls a function with an arbitrary signature from an enum ID.
-![Msg](https://github.com/user-attachments/assets/38a9412b-a6d4-4c03-82bf-bfd183d5c0a2)
+![Msg](https://github.com/user-attachments/assets/7f63e846-31be-4593-b646-7f90147cad45)
 
 ## [TimelineCustomTrack](Assets/CodeSamples/TimlineCustomTrack)
 Example implementation of custom clips, tracks, callbacks for the Timeline.
