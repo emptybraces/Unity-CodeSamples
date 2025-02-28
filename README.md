@@ -1,5 +1,9 @@
 # Unity Code Samples
 
+## [Msg](Assets/CodeSamples/Msg)
+Example implementation of an EventBus that calls a function with an arbitrary signature from an enum ID.
+![Msg](https://github.com/user-attachments/assets/38a9412b-a6d4-4c03-82bf-bfd183d5c0a2)
+
 ## [TimelineCustomTrack](Assets/CodeSamples/TimlineCustomTrack)
 Example implementation of custom clips, tracks, callbacks for the Timeline.
 ![customtimeline](https://github.com/user-attachments/assets/9e7b8387-5810-4715-931e-b4513439b7d8)
