@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 698780857}
   - component: {fileID: 698780861}
   m_Layer: 0
-  m_Name: instance
+  m_Name: template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

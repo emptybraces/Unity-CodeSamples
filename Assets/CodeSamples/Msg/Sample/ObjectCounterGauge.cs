@@ -15,14 +15,14 @@ namespace Emptybraces.MsgSample
 			_gauge = GetComponentInChildren<Image>();
 			_gauge.fillAmount = 0;
 			Msg.Set<Sample_Msg>(MsgId.OnInitedLongTime, OnInitedLongTime);
-			Msg.Set(MsgId.OnCreated, OnCreated);
-			Msg.Set(MsgId.OnRemoved, OnRemoved);
+			Msg.Set<int>(MsgId.OnCreated, OnCreated);
+			Msg.Set<int>(MsgId.OnRemoved, OnRemoved);
 		}
 		void OnDestroy()
 		{
 			Msg.Unset<Sample_Msg>(MsgId.OnInitedLongTime, OnInitedLongTime);
-			Msg.Unset(MsgId.OnCreated, OnCreated);
-			Msg.Unset(MsgId.OnRemoved, OnRemoved);
+			Msg.Unset<int>(MsgId.OnCreated, OnCreated);
+			Msg.Unset<int>(MsgId.OnRemoved, OnRemoved);
 		}
 
 		void Update()
@@ -38,7 +38,7 @@ namespace Emptybraces.MsgSample
 			_max = arg.Max;
 		}
 
-		void OnCreated() => ++_target;
-		void OnRemoved() => --_target;
+		void OnCreated(int cnt) => _target += cnt;
+		void OnRemoved(int cnt) => _target -= cnt;
 	}
 }

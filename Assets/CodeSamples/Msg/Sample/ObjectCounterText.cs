@@ -11,14 +11,14 @@ namespace Emptybraces.MsgSample
 			_text = GetComponent<TMPro.TextMeshProUGUI>();
 			gameObject.SetActive(false);
 			Msg.Set<Sample_Msg>(MsgId.OnInitedLongTime, OnInitedLongTime);
-			Msg.Set(MsgId.OnCreated, OnCreated);
-			Msg.Set(MsgId.OnRemoved, OnRemoved);
+			Msg.Set<int>(MsgId.OnCreated, OnCreated);
+			Msg.Set<int>(MsgId.OnRemoved, OnRemoved);
 		}
 		void OnDestroy()
 		{
 			Msg.Unset<Sample_Msg>(MsgId.OnInitedLongTime, OnInitedLongTime);
-			Msg.Unset(MsgId.OnCreated, OnCreated);
-			Msg.Unset(MsgId.OnRemoved, OnRemoved);
+			Msg.Unset<int>(MsgId.OnCreated, OnCreated);
+			Msg.Unset<int>(MsgId.OnRemoved, OnRemoved);
 		}
 
 		void Update()
@@ -31,7 +31,7 @@ namespace Emptybraces.MsgSample
 			gameObject.SetActive(true);
 		}
 
-		void OnCreated() => ++_current;
-		void OnRemoved() => --_current;
+		void OnCreated(int cnt) => _current += cnt;
+		void OnRemoved(int cnt) => _current -= cnt;
 	}
 }
