@@ -25,413 +25,360 @@ namespace Emptybraces
 			MsgId.OnRemoved,
 		};
 		public static bool IsOutputError = true;
-		static string _color = COLOR_NORMAL;
-		const string COLOR_NORMAL = "lightblue";
-		const string COLOR_RESERVE = "orange";
 #endif
-#if DEBUG
-		static Dictionary<(int idx, int instanceId), int> _registeredTime = new Dictionary<(int, int), int>(32);
-#endif
-		static Dictionary<(int idx, int instanceId), HashSet<Delegate>> _items = new Dictionary<(int, int), HashSet<Delegate>>(32);
-		static int _cntInvoking;
-		static List<(GameObject, MsgId, Delegate)> _modifiesItemInInvokeSet = new List<(GameObject, MsgId, Delegate)>(8);
-		static List<(GameObject, MsgId, Delegate)> _modifiesItemInInvokeUnset = new List<(GameObject, MsgId, Delegate)>(8);
+		public static Dictionary<(int id, int instanceId), int> RegisteredTime = new Dictionary<(int, int), int>(32);
+		static Dictionary<(int id, int instanceId), HashSet<Delegate>> _idToDeligates = new Dictionary<(int, int), HashSet<Delegate>>(32);
+		static Dictionary<MsgId, List<Delegate>> _idToInvokingDelicates = new();
+		static Stack<List<Delegate>> _deligateListCaches = new();
 		static Msg()
 		{
+			for (int i = 0; i < 2; ++i)
+				_deligateListCaches.Push(new List<Delegate>());
 		}
 		public static void Invoke(MsgId id)
 		{
-			if (_items.TryGetValue(((int)id, 0), out var a))
+			// invoke中に同じIDでInvokeしたら無限ループになるので阻止
+			if (_CheckInfiniteLoop(id))
+				return;
+			if (_InvokePreprocess(id, 0, out var deligate_list))
 			{
-				__LogInvoke(id);
-				++_cntInvoking;
-				foreach (var i in a)
+				for (int i = 0; i < deligate_list.Count; ++i)
 				{
-					if (i is Action ev)
-						ev();
-#if UNITY_EDITOR
+					var d = deligate_list[i];
+					if (d is Action a)
+						a.Invoke();
 					else
-					{
-						cn.loge("Invoke Failed Error: Not specified arguments.");
-						cn.loge("but delegate sigunature is: " + i.Method);
-					}
-#endif
+						_LogE($"Invoke Failed Error: Not specified arguments. but delegate sigunature is: {d.Method}");
 				}
-				--_cntInvoking;
+				_InvokePostprocess(id, deligate_list);
 			}
 			else
-				__LogInvokeFailed(id);
-			InvokeFinalize();
-
+				_LogInvokeFailed(id);
 		}
 		public static void Invoke<T>(MsgId id, T t)
 		{
-			if (_items.TryGetValue(((int)id, 0), out var a))
+			if (_CheckInfiniteLoop(id))
+				return;
+			if (_InvokePreprocess(id, 0, out var deligate_list))
 			{
-				__LogInvoke(id);
-				++_cntInvoking;
-				foreach (var i in a)
+				for (int i = 0; i < deligate_list.Count; ++i)
 				{
-					if (i is Action<T> ev)
-						ev(t);
-#if UNITY_EDITOR
+					var d = deligate_list[i];
+					if (d is Action<T> a)
+						a.Invoke(t);
 					else
-					{
-						cn.loge("Invoke Failed Error: Invoke arguments are ", typeof(T), "but registered sigunature is " + i.Method);
-					}
-#endif
+						_LogE($"Invoke Failed Error: Specified arguments are {typeof(T)} but registered sigunature is {d.Method}");
+
 				}
-				--_cntInvoking;
+				_InvokePostprocess(id, deligate_list);
 			}
 			else
-				__LogInvokeFailed(id);
-			InvokeFinalize();
+				_LogInvokeFailed(id);
 		}
 		public static void Invoke<T0, T1>(MsgId id, T0 t0, T1 t1)
 		{
-			if (_items.TryGetValue(((int)id, 0), out var a))
+			if (_CheckInfiniteLoop(id))
+				return;
+			if (_InvokePreprocess(id, 0, out var deligate_list))
 			{
-				__LogInvoke(id);
-				++_cntInvoking;
-				foreach (var i in a)
+				for (int i = 0; i < deligate_list.Count; ++i)
 				{
-					if (i is Action<T0, T1> ev)
-						ev(t0, t1);
-#if UNITY_EDITOR
+					var d = deligate_list[i];
+					if (d is Action<T0, T1> a)
+						a.Invoke(t0, t1);
 					else
-					{
-						cn.loge("Invoke Failed Error: Specified arguments are ", typeof(T0), typeof(T1));
-						cn.loge("but delegate sigunature is: " + i.Method);
-					}
-#endif
+						_LogE($"Invoke Failed Error: Specified arguments are {typeof(T0)}, {typeof(T1)} but registered sigunature is {d.Method}");
+
 				}
-				--_cntInvoking;
+				_InvokePostprocess(id, deligate_list);
 			}
 			else
-				__LogInvokeFailed(id);
-			InvokeFinalize();
+				_LogInvokeFailed(id);
 		}
 		public static void Invoke<T0, T1, T2>(MsgId id, T0 t0, T1 t1, T2 t2)
 		{
-			if (_items.TryGetValue(((int)id, 0), out var a))
+			if (_CheckInfiniteLoop(id))
+				return;
+			if (_InvokePreprocess(id, 0, out var deligate_list))
 			{
-				__LogInvoke(id);
-				++_cntInvoking;
-				foreach (var i in a)
+				for (int i = 0; i < deligate_list.Count; ++i)
 				{
-					if (i is Action<T0, T1, T2> ev)
-						ev(t0, t1, t2);
-#if UNITY_EDITOR
+					var d = deligate_list[i];
+					if (d is Action<T0, T1, T2> a)
+						a.Invoke(t0, t1, t2);
 					else
-					{
-						cn.loge("Invoke Failed Error: Specified arguments are ", typeof(T0), typeof(T1), typeof(T2));
-						cn.loge("but delegate sigunature is: " + i.Method);
-					}
-#endif
+						_LogE($"Invoke Failed Error: Specified arguments are {typeof(T0)}, {typeof(T1)}, {typeof(T2)} but registered sigunature is {d.Method}");
+
 				}
-				--_cntInvoking;
+				_InvokePostprocess(id, deligate_list);
 			}
 			else
-				__LogInvokeFailed(id);
-			InvokeFinalize();
+				_LogInvokeFailed(id);
 		}
 		public static void Invoke<T0, T1, T2, T3>(MsgId id, T0 t0, T1 t1, T2 t2, T3 t3)
 		{
-			++_cntInvoking;
-			if (_items.TryGetValue(((int)id, 0), out var a))
+			if (_CheckInfiniteLoop(id))
+				return;
+			if (_InvokePreprocess(id, 0, out var deligate_list))
 			{
-				__LogInvoke(id);
-				foreach (var i in a)
+				for (int i = 0; i < deligate_list.Count; ++i)
 				{
-					if (i is Action<T0, T1, T2, T3> ev)
-						ev(t0, t1, t2, t3);
-#if UNITY_EDITOR
+					var d = deligate_list[i];
+					if (d is Action<T0, T1, T2, T3> a)
+						a.Invoke(t0, t1, t2, t3);
 					else
-					{
-						cn.loge("Invoke Failed Error: Specified arguments are ", typeof(T0), typeof(T1), typeof(T2), typeof(T3));
-						cn.loge("but delegate sigunature is: " + i.Method);
-					}
-#endif
+						_LogE($"Invoke Failed Error: Specified arguments are {typeof(T0)}, {typeof(T1)}, {typeof(T2)}, {typeof(T3)} but registered sigunature is {d.Method}");
+
 				}
+				_InvokePostprocess(id, deligate_list);
 			}
 			else
-				__LogInvokeFailed(id);
-			InvokeFinalize();
+				_LogInvokeFailed(id);
 		}
 		public static void Invoke<T0, T1, T2, T3, T4>(MsgId id, T0 t0, T1 t1, T2 t2, T3 t3, T4 t4)
 		{
-			if (_items.TryGetValue(((int)id, 0), out var a))
+			if (_CheckInfiniteLoop(id))
+				return;
+			if (_InvokePreprocess(id, 0, out var deligate_list))
 			{
-				__LogInvoke(id);
-				++_cntInvoking;
-				foreach (var i in a)
+				for (int i = 0; i < deligate_list.Count; ++i)
 				{
-					if (i is Action<T0, T1, T2, T3, T4> ev)
-						ev(t0, t1, t2, t3, t4);
-#if UNITY_EDITOR
+					var d = deligate_list[i];
+					if (d is Action<T0, T1, T2, T3, T4> a)
+						a.Invoke(t0, t1, t2, t3, t4);
 					else
-					{
-						cn.loge("Invoke Failed Error: Specified arguments are ", typeof(T0), typeof(T1), typeof(T2), typeof(T3), typeof(T4));
-						cn.loge("but delegate sigunature is: " + i.Method);
-					}
-#endif
+						_LogE($"Invoke Failed Error: Specified arguments are {typeof(T0)}, {typeof(T1)}, {typeof(T2)}, {typeof(T3)}, {typeof(T4)} but registered sigunature is {d.Method}");
+
 				}
-				--_cntInvoking;
+				_InvokePostprocess(id, deligate_list);
 			}
 			else
-				__LogInvokeFailed(id);
-			InvokeFinalize();
+				_LogInvokeFailed(id);
 		}
 		public static void Invoke(GameObject g, MsgId id)
 		{
-			if (_items.TryGetValue(((int)id, g.GetInstanceID()), out var a))
+			if (_CheckInfiniteLoop(id))
+				return;
+			if (_InvokePreprocess(id, g.GetInstanceID(), out var deligate_list))
 			{
-				__LogInvoke(id);
-				++_cntInvoking;
-				foreach (var i in a)
+				for (int i = 0; i < deligate_list.Count; ++i)
 				{
-					if (i is Action ev)
-						ev();
-#if UNITY_EDITOR
+					var d = deligate_list[i];
+					if (d is Action a)
+						a.Invoke();
 					else
-					{
-						cn.loge("Invoke Failed Error: Not specified arguments.");
-						cn.loge("but delegate sigunature is: " + i.Method);
-					}
-#endif
+						_LogE($"Invoke Failed Error: Not specified arguments. but registered sigunature is {d.Method}");
+
 				}
-				--_cntInvoking;
+				_InvokePostprocess(id, deligate_list);
 			}
 			else
-				__LogInvokeFailed(id, g);
-			InvokeFinalize();
+				_LogInvokeFailed(id);
 		}
 		public static void Invoke<T>(GameObject g, MsgId id, T t)
 		{
-			if (_items.TryGetValue(((int)id, g.GetInstanceID()), out var a))
+			if (_CheckInfiniteLoop(id))
+				return;
+			if (_InvokePreprocess(id, g.GetInstanceID(), out var deligate_list))
 			{
-				__LogInvoke(id);
-				++_cntInvoking;
-				foreach (var i in a)
+				for (int i = 0; i < deligate_list.Count; ++i)
 				{
-					if (i is Action<T> ev)
-						ev(t);
-#if UNITY_EDITOR
+					var d = deligate_list[i];
+					if (d is Action<T> a)
+						a.Invoke(t);
 					else
-					{
-						cn.loge("Invoke Failed Error: Specified arguments are ", typeof(T));
-						cn.loge("but delegate sigunature is: " + i.Method);
-					}
-#endif
+						_LogE($"Invoke Failed Error: Specified arguments are {typeof(T)}, but registered sigunature is {d.Method}");
+
 				}
-				--_cntInvoking;
+				_InvokePostprocess(id, deligate_list);
 			}
 			else
-				__LogInvokeFailed(id, g);
-			InvokeFinalize();
+				_LogInvokeFailed(id);
 		}
 		public static void Invoke<T0, T1>(GameObject g, MsgId id, T0 t0, T1 t1)
 		{
-			if (_items.TryGetValue(((int)id, g.GetInstanceID()), out var a))
+			if (_CheckInfiniteLoop(id))
+				return;
+			if (_InvokePreprocess(id, g.GetInstanceID(), out var deligate_list))
 			{
-				__LogInvoke(id);
-				++_cntInvoking;
-				foreach (var i in a)
+				for (int i = 0; i < deligate_list.Count; ++i)
 				{
-					if (i is Action<T0, T1> ev)
-						ev(t0, t1);
-#if UNITY_EDITOR
+					var d = deligate_list[i];
+					if (d is Action<T0, T1> a)
+						a.Invoke(t0, t1);
 					else
-					{
-						cn.loge("Invoke Failed Error: Specified arguments are ", typeof(T0), typeof(T1));
-						cn.loge("but delegate sigunature is: " + i.Method);
-					}
-#endif
+						_LogE($"Invoke Failed Error: Specified arguments are {typeof(T0)}, {typeof(T1)}, but registered sigunature is {d.Method}");
+
 				}
-				--_cntInvoking;
+				_InvokePostprocess(id, deligate_list);
 			}
 			else
-				__LogInvokeFailed(id, g);
-			InvokeFinalize();
+				_LogInvokeFailed(id);
 		}
 		public static void Invoke<T0, T1, T2>(GameObject g, MsgId id, T0 t0, T1 t1, T2 t2)
 		{
-			if (_items.TryGetValue(((int)id, g.GetInstanceID()), out var a))
+			if (_CheckInfiniteLoop(id))
+				return;
+			if (_InvokePreprocess(id, g.GetInstanceID(), out var deligate_list))
 			{
-				__LogInvoke(id);
-				++_cntInvoking;
-				foreach (var i in a)
+				for (int i = 0; i < deligate_list.Count; ++i)
 				{
-					if (i is Action<T0, T1, T2> ev)
-						ev(t0, t1, t2);
-#if UNITY_EDITOR
+					var d = deligate_list[i];
+					if (d is Action<T0, T1, T2> a)
+						a.Invoke(t0, t1, t2);
 					else
-					{
-						cn.loge("Invoke Failed Error: Specified arguments are ", typeof(T0), typeof(T1), typeof(T2));
-						cn.loge("but delegate sigunature is: " + i.Method);
-					}
-#endif
+						_LogE($"Invoke Failed Error: Specified arguments are {typeof(T0)}, {typeof(T1)}, {typeof(T2)}, but registered sigunature is {d.Method}");
+
 				}
-				--_cntInvoking;
+				_InvokePostprocess(id, deligate_list);
 			}
 			else
-				__LogInvokeFailed(id, g);
-			InvokeFinalize();
+				_LogInvokeFailed(id);
 		}
 		public static void Invoke<T0, T1, T2, T3>(GameObject g, MsgId id, T0 t0, T1 t1, T2 t2, T3 t3)
 		{
-			if (_items.TryGetValue(((int)id, g.GetInstanceID()), out var a))
+			if (_CheckInfiniteLoop(id))
+				return;
+			if (_InvokePreprocess(id, g.GetInstanceID(), out var deligate_list))
 			{
-				__LogInvoke(id);
-				++_cntInvoking;
-				foreach (var i in a)
+				for (int i = 0; i < deligate_list.Count; ++i)
 				{
-					if (i is Action<T0, T1, T2, T3> ev)
-						ev(t0, t1, t2, t3);
-#if UNITY_EDITOR
+					var d = deligate_list[i];
+					if (d is Action<T0, T1, T2, T3> a)
+						a.Invoke(t0, t1, t2, t3);
 					else
-					{
-						cn.loge("Invoke Failed Error: Specified arguments are ", typeof(T0), typeof(T1), typeof(T2), typeof(T3));
-						cn.loge("but delegate sigunature is: " + i.Method);
-					}
-#endif
+						_LogE($"Invoke Failed Error: Specified arguments are {typeof(T0)}, {typeof(T1)}, {typeof(T2)}, {typeof(T3)}, but registered sigunature is {d.Method}");
+
 				}
-				--_cntInvoking;
+				_InvokePostprocess(id, deligate_list);
 			}
 			else
-				__LogInvokeFailed(id, g);
-			InvokeFinalize();
+				_LogInvokeFailed(id);
 		}
 		public static void Invoke<T0, T1, T2, T3, T4>(GameObject g, MsgId id, T0 t0, T1 t1, T2 t2, T3 t3, T4 t4)
 		{
-			if (_items.TryGetValue(((int)id, g.GetInstanceID()), out var a))
+			if (_CheckInfiniteLoop(id))
+				return;
+			if (_InvokePreprocess(id, g.GetInstanceID(), out var deligate_list))
 			{
-				__LogInvoke(id);
-				++_cntInvoking;
-				foreach (var i in a)
+				for (int i = 0; i < deligate_list.Count; ++i)
 				{
-					if (i is Action<T0, T1, T2, T3, T4> ev)
-						ev(t0, t1, t2, t3, t4);
-#if UNITY_EDITOR
+					var d = deligate_list[i];
+					if (d is Action<T0, T1, T2, T3, T4> a)
+						a.Invoke(t0, t1, t2, t3, t4);
 					else
-					{
-						cn.loge("Invoke Failed Error: Specified arguments are ", typeof(T0), typeof(T1), typeof(T2), typeof(T3), typeof(T4));
-						cn.loge("but delegate sigunature is: " + i.Method);
-					}
-#endif
+						_LogE($"Invoke Failed Error: Specified arguments are {typeof(T0)}, {typeof(T1)}, {typeof(T2)}, {typeof(T3)}, {typeof(T4)}, but registered sigunature is {d.Method}");
+
 				}
-				--_cntInvoking;
+				_InvokePostprocess(id, deligate_list);
 			}
 			else
-				__LogInvokeFailed(id, g);
-			InvokeFinalize();
-		}
-		public static void InvokeFinalize()
-		{
-			if (0 < _cntInvoking)
-				return;
-			__StartReservedSetUnset();
-			foreach (var i in _modifiesItemInInvokeSet)
-				__Set(i.Item1, i.Item2, i.Item3);
-			foreach (var i in _modifiesItemInInvokeUnset)
-				__Unset(i.Item1, i.Item2, i.Item3);
-			_modifiesItemInInvokeSet.Clear();
-			_modifiesItemInInvokeUnset.Clear();
-			__EndReservedSetUnset();
+				_LogInvokeFailed(id);
 		}
 
-		public static void Set(MsgId id, Action action) => __Set(null, id, (Delegate)action);
-		public static void Unset(MsgId id, Action action) => __Unset(null, id, (Delegate)action);
-		public static void Set<T>(MsgId id, Action<T> action) => __Set(null, id, (Delegate)action);
-		public static void Unset<T>(MsgId id, Action<T> action) => __Unset(null, id, (Delegate)action);
-		public static void Set<T0, T1>(MsgId id, Action<T0, T1> action) => __Set(null, id, (Delegate)action);
-		public static void Unset<T0, T1>(MsgId id, Action<T0, T1> action) => __Unset(null, id, (Delegate)action);
-		public static void Set<T0, T1, T2>(MsgId id, Action<T0, T1, T2> action) => __Set(null, id, (Delegate)action);
-		public static void Unset<T0, T1, T2>(MsgId id, Action<T0, T1, T2> action) => __Unset(null, id, (Delegate)action);
-		public static void Set<T0, T1, T2, T3>(MsgId id, Action<T0, T1, T2, T3> action) => __Set(null, id, (Delegate)action);
-		public static void Unset<T0, T1, T2, T3>(MsgId id, Action<T0, T1, T2, T3> action) => __Unset(null, id, (Delegate)action);
-		public static void Set<T0, T1, T2, T3, T4>(MsgId id, Action<T0, T1, T2, T3, T4> action) => __Set(null, id, (Delegate)action);
-		public static void Unset<T0, T1, T2, T3, T4>(MsgId id, Action<T0, T1, T2, T3, T4> action) => __Unset(null, id, (Delegate)action);
-		public static void Set(GameObject g, MsgId id, Action action) { Assert.IsNotNull(g); __Set(g, id, (Delegate)action); }
-		public static void Unset(GameObject g, MsgId id, Action action) { Assert.IsNotNull(g); __Unset(g, id, (Delegate)action); }
-		public static void Set<T>(GameObject g, MsgId id, Action<T> action) { Assert.IsNotNull(g); __Set(g, id, (Delegate)action); }
-		public static void Unset<T>(GameObject g, MsgId id, Action<T> action) { Assert.IsNotNull(g); __Unset(g, id, (Delegate)action); }
-		public static void Set<T0, T1>(GameObject g, MsgId id, Action<T0, T1> action) { Assert.IsNotNull(g); __Set(g, id, (Delegate)action); }
-		public static void Unset<T0, T1>(GameObject g, MsgId id, Action<T0, T1> action) { Assert.IsNotNull(g); __Unset(g, id, (Delegate)action); }
-		public static void Set<T0, T1, T2>(GameObject g, MsgId id, Action<T0, T1, T2> action) { Assert.IsNotNull(g); __Set(g, id, (Delegate)action); }
-		public static void Unset<T0, T1, T2>(GameObject g, MsgId id, Action<T0, T1, T2> action) { Assert.IsNotNull(g); __Unset(g, id, (Delegate)action); }
-		public static void Set<T0, T1, T2, T3>(GameObject g, MsgId id, Action<T0, T1, T2, T3> action) { Assert.IsNotNull(g); __Set(g, id, (Delegate)action); }
-		public static void Unset<T0, T1, T2, T3>(GameObject g, MsgId id, Action<T0, T1, T2, T3> action) { Assert.IsNotNull(g); __Unset(g, id, (Delegate)action); }
-		public static void Set<T0, T1, T2, T3, T4>(GameObject g, MsgId id, Action<T0, T1, T2, T3, T4> action) { Assert.IsNotNull(g); __Set(g, id, (Delegate)action); }
-		public static void Unset<T0, T1, T2, T3, T4>(GameObject g, MsgId id, Action<T0, T1, T2, T3, T4> action) { Assert.IsNotNull(g); __Unset(g, id, (Delegate)action); }
-		static void __Set(GameObject g, MsgId id, Delegate action)
+		static bool _CheckInfiniteLoop(MsgId id)
 		{
-			// foreach 中にコレクション操作されると例外発生するので、Invoke終わった後に実行する。
-			if (0 < _cntInvoking)
+			if (_idToInvokingDelicates.ContainsKey(id))
 			{
-				_modifiesItemInInvokeSet.Add((g, id, action));
-				__LogSetReserve(id);
-				return;
+				_LogE($"Invoke Failed Error: An Invoke with the same ID({id}) was called during an ongoing Invoke. Infinite loop prevented.");
+				return true;
 			}
-			var gid = g != null ? g.GetInstanceID() : 0;
-			bool r = false;
-			var key = ((int)id, gid);
-			if (_items.TryGetValue(key, out var set))
-			{
-				r = set.Add(action);
-			}
-			else
-			{
-				set = new HashSet<Delegate>();
-				r = set.Add(action);
-				_items.Add(key, set);
-			}
-#if DEBUG
-			_registeredTime[key] = Time.frameCount;
-#endif
-			__LogSet(r, id, action);
+			return false;
 		}
-		static void __Unset(GameObject g, MsgId id, Delegate action)
+		static bool _InvokePreprocess(MsgId id, int instanceId, out List<Delegate> delegateList)
 		{
-			// foreach 中にコレクション操作されると例外発生するので、Invoke終わった後に実行する。
-			// cn.logRed(g, id, _isInvoking);
-			if (0 < _cntInvoking)
+			if (_idToDeligates.TryGetValue(((int)id, instanceId), out var deligates))
 			{
-				_modifiesItemInInvokeUnset.Add((g, id, action));
-				__LogUnsetReserve(id);
-				return;
+				_LogInvoke(id);
+				// リストからバッファから取得する。Invokeする１フレームだけ必要なdelegateリストは使いまわすため、バッファを用意。
+				if (!_deligateListCaches.TryPop(out delegateList))
+					delegateList = new();
+				// 覚えておく
+				_idToInvokingDelicates[id] = delegateList;
+				delegateList.AddRange(deligates);
+				return true;
 			}
+			delegateList = null;
+			return false;
+		}
+		static void _InvokePostprocess(MsgId id, List<Delegate> delegateList)
+		{
+			delegateList.Clear();
+			_deligateListCaches.Push(delegateList);
+			_idToInvokingDelicates.Remove(id);
+		}
+
+
+		public static void Set(MsgId id, Action action) => _Set(null, id, (Delegate)action);
+		public static void Unset(MsgId id, Action action) => _Unset(null, id, (Delegate)action);
+		public static void Set<T>(MsgId id, Action<T> action) => _Set(null, id, (Delegate)action);
+		public static void Unset<T>(MsgId id, Action<T> action) => _Unset(null, id, (Delegate)action);
+		public static void Set<T0, T1>(MsgId id, Action<T0, T1> action) => _Set(null, id, (Delegate)action);
+		public static void Unset<T0, T1>(MsgId id, Action<T0, T1> action) => _Unset(null, id, (Delegate)action);
+		public static void Set<T0, T1, T2>(MsgId id, Action<T0, T1, T2> action) => _Set(null, id, (Delegate)action);
+		public static void Unset<T0, T1, T2>(MsgId id, Action<T0, T1, T2> action) => _Unset(null, id, (Delegate)action);
+		public static void Set<T0, T1, T2, T3>(MsgId id, Action<T0, T1, T2, T3> action) => _Set(null, id, (Delegate)action);
+		public static void Unset<T0, T1, T2, T3>(MsgId id, Action<T0, T1, T2, T3> action) => _Unset(null, id, (Delegate)action);
+		public static void Set<T0, T1, T2, T3, T4>(MsgId id, Action<T0, T1, T2, T3, T4> action) => _Set(null, id, (Delegate)action);
+		public static void Unset<T0, T1, T2, T3, T4>(MsgId id, Action<T0, T1, T2, T3, T4> action) => _Unset(null, id, (Delegate)action);
+		public static void Set(GameObject g, MsgId id, Action action) { Assert.IsNotNull(g); _Set(g, id, (Delegate)action); }
+		public static void Unset(GameObject g, MsgId id, Action action) { Assert.IsNotNull(g); _Unset(g, id, (Delegate)action); }
+		public static void Set<T>(GameObject g, MsgId id, Action<T> action) { Assert.IsNotNull(g); _Set(g, id, (Delegate)action); }
+		public static void Unset<T>(GameObject g, MsgId id, Action<T> action) { Assert.IsNotNull(g); _Unset(g, id, (Delegate)action); }
+		public static void Set<T0, T1>(GameObject g, MsgId id, Action<T0, T1> action) { Assert.IsNotNull(g); _Set(g, id, (Delegate)action); }
+		public static void Unset<T0, T1>(GameObject g, MsgId id, Action<T0, T1> action) { Assert.IsNotNull(g); _Unset(g, id, (Delegate)action); }
+		public static void Set<T0, T1, T2>(GameObject g, MsgId id, Action<T0, T1, T2> action) { Assert.IsNotNull(g); _Set(g, id, (Delegate)action); }
+		public static void Unset<T0, T1, T2>(GameObject g, MsgId id, Action<T0, T1, T2> action) { Assert.IsNotNull(g); _Unset(g, id, (Delegate)action); }
+		public static void Set<T0, T1, T2, T3>(GameObject g, MsgId id, Action<T0, T1, T2, T3> action) { Assert.IsNotNull(g); _Set(g, id, (Delegate)action); }
+		public static void Unset<T0, T1, T2, T3>(GameObject g, MsgId id, Action<T0, T1, T2, T3> action) { Assert.IsNotNull(g); _Unset(g, id, (Delegate)action); }
+		public static void Set<T0, T1, T2, T3, T4>(GameObject g, MsgId id, Action<T0, T1, T2, T3, T4> action) { Assert.IsNotNull(g); _Set(g, id, (Delegate)action); }
+		public static void Unset<T0, T1, T2, T3, T4>(GameObject g, MsgId id, Action<T0, T1, T2, T3, T4> action) { Assert.IsNotNull(g); _Unset(g, id, (Delegate)action); }
+		static void _Set(GameObject g, MsgId id, Delegate action)
+		{
+			// // Invoke中に呼び出された場合、呼び出し中リストに加える
+			// if (_idToInvokingDelicates.TryGetValue(id, out var invoking_list) && !invoking_list.Contains(action))
+			// {
+			// }
+			var gid = g != null ? g.GetInstanceID() : 0;
+			var key = ((int)id, gid);
+			if (!_idToDeligates.TryGetValue(key, out var set))
+				_idToDeligates.Add(key, set = new HashSet<Delegate>());
+			var r = set.Add(action);
+			_LogSet(r, id, action);
+			RegisteredTime[key] = Time.frameCount;
+		}
+
+		static void _Unset(GameObject g, MsgId id, Delegate action)
+		{
 			var gid = g != null ? g.GetInstanceID() : 0;
 			bool r = false;
 			var key = ((int)id, gid);
-			if (_items.TryGetValue(key, out var set))
+			if (_idToDeligates.TryGetValue(key, out var set))
 			{
 				r = set.Remove(action);
-				// インスタンスIDの参照がいる場合で、アイテムがゼロになったら削除する
-				if (gid != 0 && set.Count() == 0)
+				// 登録がゼロになったら削除する
+				if (set.Count() == 0)
 				{
-					_items.Remove(key);
-#if DEBUG
-					_registeredTime.Remove(key);
-#endif
+					_idToDeligates.Remove(key);
+					RegisteredTime.Remove(key);
 				}
 			}
-			__LogUnset(r, id, action);
+			_LogUnset(r, id, action);
 		}
 
 		public static void Unset(GameObject g)
 		{
 			var gid = g.GetInstanceID();
 			bool r = false;
-			foreach (var key in _items.Keys.ToArray())
+			foreach (var key in _idToDeligates.Keys.ToArray())
 			{
 				if (key.Item2 == gid)
 				{
 					r = true;
-					_items.Remove(key);
+					_idToDeligates.Remove(key);
 				}
 			}
-			__LogUnset(r, g);
+			_LogUnset(r, g);
 		}
 
 		static StringBuilder _sb;
@@ -440,11 +387,11 @@ namespace Emptybraces
 #if DEBUG
 			_sb ??= new StringBuilder();
 			_sb.Clear();
-			_sb.Append("Key Total: ").AppendLine(_items.Count.ToString());
-			_sb.Append("Value Total: ").AppendLine(_items.Sum(e => e.Value.Count()).ToString());
-			foreach (var i in _items.OrderBy(e => e.Key.Item1))
+			_sb.Append("Key Total: ").AppendLine(_idToDeligates.Count.ToString());
+			_sb.Append("Value Total: ").AppendLine(_idToDeligates.Sum(e => e.Value.Count()).ToString());
+			foreach (var i in _idToDeligates.OrderBy(e => e.Key.Item1))
 			{
-				_sb.AppendLine($"\tno=({(MsgId)i.Key.Item1}, objid={i.Key.Item2,8}), cnt={i.Value.Count,2}, reg={Time.frameCount - _registeredTime[i.Key],5}");
+				_sb.AppendLine($"\tno=({(MsgId)i.Key.Item1}, objid={i.Key.Item2,8}), cnt={i.Value.Count,2}, reg={Time.frameCount - RegisteredTime[i.Key],5}");
 				// _sb.AppendLine($"\tno=({i.Key.Item1,3}, objid={i.Key.Item2,8}), cnt={i.Value.Count,2}, reg={Time.frameCount - _registeredTime[i.Key],5}");
 			}
 			return _sb.ToString();
@@ -454,73 +401,54 @@ namespace Emptybraces
 		}
 
 		[System.Diagnostics.Conditional("MSG_LOG_ENABLE")]
-		static void __StartReservedSetUnset()
+		static void _LogSet(bool result, MsgId id, Delegate action)
 		{
-			int total = _modifiesItemInInvokeSet.Count + _modifiesItemInInvokeUnset.Count;
-			if (0 < total)
-				_color = COLOR_RESERVE;
+			if (result) Debug.Log($"<color=lightblue>Msg: Register({(int)id}.{id}) Success</color>");
+			else if (IsOutputError) Debug.Log($"<color=yellow>Msg: Register({(int)id}.{id}) Failed</color>");
 		}
 		[System.Diagnostics.Conditional("MSG_LOG_ENABLE")]
-		static void __EndReservedSetUnset()
+		static void _LogUnset(bool result, MsgId id, Delegate action)
 		{
-			_color = COLOR_NORMAL;
+			if (result) Debug.Log($"<color=lightblue>Msg: Unregister({(int)id}.{id}) Success</color>");
+			else if (IsOutputError) Debug.Log($"<color=yellow>Msg: Unregister({(int)id}.{id}) Failed</color>");
 		}
 		[System.Diagnostics.Conditional("MSG_LOG_ENABLE")]
-		static void __LogSetReserve(MsgId id)
+		static void _LogUnset(bool result, GameObject g)
 		{
-			// cn.log($"<color=orange>Msg登録予約({(int)id}.{id})</color>");
-		}
-		[System.Diagnostics.Conditional("MSG_LOG_ENABLE")]
-		static void __LogUnsetReserve(MsgId id)
-		{
-			// cn.log($"<color=orange>Msg登録解除予約({(int)id}.{id})</color>");
-		}
-		[System.Diagnostics.Conditional("MSG_LOG_ENABLE")]
-		static void __LogSet(bool result, MsgId id, Delegate action)
-		{
-			if (result) cn.log($"<color={_color}>Msg登録({(int)id}.{id}) 成功</color>");
-			else if (IsOutputError) cn.log($"<color=yellow>Msg登録({(int)id}.{id}) 失敗</color>");
-		}
-		[System.Diagnostics.Conditional("MSG_LOG_ENABLE")]
-		static void __LogUnset(bool result, MsgId id, Delegate action)
-		{
-			if (result) cn.log($"<color={_color}>Msg登録解除({(int)id}.{id}) 成功</color>");
-			else if (IsOutputError) cn.log($"<color=yellow>Msg登録解除({(int)id}.{id}) 失敗</color>");
-		}
-		[System.Diagnostics.Conditional("MSG_LOG_ENABLE")]
-		static void __LogUnset(bool result, GameObject g)
-		{
-			if (result) cn.log($"<color={_color}>Msg一括登録解除({g.name}) 成功</color>");
-			else if (IsOutputError) cn.log($"<color=yellow>Msg一括登録解除({g.name}) 失敗</color>");
+			if (result) Debug.Log($"<color=lightblue>Msg: Batch Unregister({g.name}) Success</color>");
+			else if (IsOutputError) Debug.Log($"<color=yellow>Msg: Batch Unregister({g.name}) Failed</color>");
 		}
 
 		[System.Diagnostics.Conditional("MSG_LOG_ENABLE")]
-		static void __LogInvoke(MsgId id)
+		static void _LogInvoke(MsgId id)
 		{
 			if (!_ignoreLogMsgId.Contains(id))
-				cn.log($"<color={_color}>Msg実行({(int)id}.{id})</color>");
+				Debug.Log($"<color=lightblue>Msg: Invoke({(int)id}.{id})</color>");
 		}
 		[System.Diagnostics.Conditional("MSG_LOG_ENABLE")]
-		static void __LogInvokeFailed(MsgId id, GameObject g = null)
+		static void _LogInvokeFailed(MsgId id, GameObject g = null)
 		{
 			if (IsOutputError && !_ignoreLogMsgId.Contains(id))
-				cn.log($"<color=yellow>Msg実行失敗({(int)id}.{id}, {g})</color>");
+				Debug.Log($"<color=yellow>Msg: Invoke Failed({(int)id}.{id}, {g})</color>");
 		}
+
+		[System.Diagnostics.Conditional("DEBUG")] static void _Log(string s) => Debug.Log(s);
+		[System.Diagnostics.Conditional("DEBUG")] static void _LogE(string s) => Debug.LogError(s);
 #if !DEBUG
 		[System.Diagnostics.Conditional("NEVER_CALLED")]
 #endif
 		public static void Dump()
 		{
 			var sb = new StringBuilder();
-			foreach (var kvp in _items)
+			foreach (var kvp in _idToDeligates)
 			{
 				sb.Clear();
-				sb.Append($"{(MsgId)kvp.Key.idx}, {kvp.Key.instanceId}, {kvp.Value.ElementAt(0)}");
+				sb.Append($"{(MsgId)kvp.Key.id}, {kvp.Key.instanceId}, {kvp.Value.ElementAt(0)}");
 				foreach (var d in kvp.Value)
 				{
 					sb.Append($"\n - {d.Method}/{d.Target}");
 				}
-				cn.log(sb.ToString());
+				Debug.Log(sb.ToString());
 			}
 		}
 
@@ -528,10 +456,10 @@ namespace Emptybraces
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
 		static void _DomainReset()
 		{
-			_registeredTime = new Dictionary<(int, int), int>(32);
-			_items = new Dictionary<(int, int), HashSet<Delegate>>(32);
-			_cntInvoking = 0;
-			_color = COLOR_NORMAL;
+			RegisteredTime = new Dictionary<(int, int), int>(32);
+			_idToDeligates = new Dictionary<(int, int), HashSet<Delegate>>(32);
+			_idToInvokingDelicates = new();
+			_deligateListCaches = new();
 		}
 #endif
 

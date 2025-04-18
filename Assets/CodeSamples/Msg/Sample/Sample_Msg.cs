@@ -20,6 +20,7 @@ namespace Emptybraces.MsgSample
 			_matB.color = Color.blue;
 			_prefab.SetActive(false);
 			_ = InstantiateMonitor();
+			Msg.Set((MsgId)99, _TestCallbackSetUnsetInvokeInParentInvoke);
 		}
 		async Task Start()
 		{
@@ -44,6 +45,29 @@ namespace Emptybraces.MsgSample
 				}
 				Msg.Invoke(MsgId.OnRemoved, cnt);
 			}
+			// set, invokeの連続テスト
+			else if (Keyboard.current[Key.P].wasPressedThisFrame)
+			{
+				Msg.Invoke((MsgId)99);
+			}
+		}
+
+		void _TestCallbackSetUnsetInvokeInParentInvoke()
+		{
+			// 無限ループチェック
+			Msg.Invoke((MsgId)99);
+			// Invokeの中でSetして、
+			for (int i = 100; i < 105; ++i)
+				Msg.Set<int>((MsgId)(i), _Logged);
+			// Invokeの中でUnsetして、
+			Msg.Unset<int>((MsgId)(103), _Logged);
+			// Invokeの中で呼び出す。
+			for (int i = 100; i < 105; ++i)
+				Msg.Invoke<int>((MsgId)(i), i);
+		}
+		void _Logged(int i)
+		{
+			cn.log(i);
 		}
 
 		void OnDestroy()
@@ -70,7 +94,8 @@ namespace Emptybraces.MsgSample
 					while (!task.isDone)
 						await Awaitable.NextFrameAsync(destroyCancellationToken);
 					_instances.AddRange(task.Result);
-					foreach (var g in task.Result) {
+					foreach (var g in task.Result)
+					{
 						g.SetActive(true);
 						g.GetComponent<MeshRenderer>().sharedMaterial = Random.value < 0.5f ? _matR : _matB;
 					}
