@@ -20,7 +20,7 @@ namespace Emptybraces.MsgSample
 			_matB.color = Color.blue;
 			_prefab.SetActive(false);
 			_ = InstantiateMonitor();
-			Msg.Set((MsgId)99, _TestCallbackSetUnsetInvokeInParentInvoke);
+			Msg.Set<int>((MsgId)99, _TestCallbackSetUnsetInvokeInParentInvoke);
 		}
 		async Task Start()
 		{
@@ -48,22 +48,23 @@ namespace Emptybraces.MsgSample
 			// set, invokeの連続テスト
 			else if (Keyboard.current[Key.P].wasPressedThisFrame)
 			{
-				Msg.Invoke((MsgId)99);
+				Msg.Invoke((MsgId)99, 0);
 			}
 		}
 
-		void _TestCallbackSetUnsetInvokeInParentInvoke()
+		void _TestCallbackSetUnsetInvokeInParentInvoke(int n)
 		{
 			// 無限ループチェック
-			Msg.Invoke((MsgId)99);
+			cn.log("再帰コールチェックテスト:", n);
+			Msg.Invoke((MsgId)99, n + 1);
 			// Invokeの中でSetして、
-			for (int i = 100; i < 105; ++i)
-				Msg.Set<int>((MsgId)(i), _Logged);
+			Msg.Set<int>((MsgId)(100), _Logged);
+			Msg.Set<int>((MsgId)(101), _Logged);
 			// Invokeの中でUnsetして、
-			Msg.Unset<int>((MsgId)(103), _Logged);
+			Msg.Unset<int>((MsgId)(101), _Logged);
 			// Invokeの中で呼び出す。
-			for (int i = 100; i < 105; ++i)
-				Msg.Invoke<int>((MsgId)(i), i);
+			Msg.Invoke<int>((MsgId)(100), 100);
+			Msg.Invoke<int>((MsgId)(101), 101);
 		}
 		void _Logged(int i)
 		{

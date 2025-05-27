@@ -28,8 +28,9 @@ namespace Emptybraces
 #endif
 		public static Dictionary<(int id, int instanceId), int> RegisteredTime = new Dictionary<(int, int), int>(32);
 		static Dictionary<(int id, int instanceId), HashSet<Delegate>> _idToDeligates = new Dictionary<(int, int), HashSet<Delegate>>(32);
-		static Dictionary<MsgId, List<Delegate>> _idToInvokingDelicates = new();
+		static Dictionary<int, int> _idToInvokingCount = new Dictionary<int, int>(32);
 		static Stack<List<Delegate>> _deligateListCaches = new();
+		const int RECURSION_LIMIT = 10; // 再帰コール制限
 		static Msg()
 		{
 			for (int i = 0; i < 2; ++i)
@@ -278,9 +279,9 @@ namespace Emptybraces
 
 		static bool _CheckInfiniteLoop(MsgId id)
 		{
-			if (_idToInvokingDelicates.ContainsKey(id))
+			if (_idToInvokingCount.TryGetValue((int)id, out var count) && RECURSION_LIMIT < count)
 			{
-				_LogE($"Invoke Failed Error: An Invoke with the same ID({id}) was called during an ongoing Invoke. Infinite loop prevented.");
+				_LogW($"Invoke Warning: Invoke with ID '{id}' was triggered '{count}' times during its own execution. Preventing infinite loop.");
 				return true;
 			}
 			return false;
@@ -294,7 +295,8 @@ namespace Emptybraces
 				if (!_deligateListCaches.TryPop(out delegateList))
 					delegateList = new();
 				// 覚えておく
-				_idToInvokingDelicates[id] = delegateList;
+				_idToInvokingCount.TryAdd((int)id, 0);
+				++_idToInvokingCount[(int)id];
 				delegateList.AddRange(deligates);
 				return true;
 			}
@@ -305,35 +307,35 @@ namespace Emptybraces
 		{
 			delegateList.Clear();
 			_deligateListCaches.Push(delegateList);
-			_idToInvokingDelicates.Remove(id);
+			--_idToInvokingCount[(int)id];
 		}
 
 
-		public static void Set(MsgId id, Action action) => _Set(null, id, (Delegate)action);
-		public static void Unset(MsgId id, Action action) => _Unset(null, id, (Delegate)action);
-		public static void Set<T>(MsgId id, Action<T> action) => _Set(null, id, (Delegate)action);
-		public static void Unset<T>(MsgId id, Action<T> action) => _Unset(null, id, (Delegate)action);
-		public static void Set<T0, T1>(MsgId id, Action<T0, T1> action) => _Set(null, id, (Delegate)action);
-		public static void Unset<T0, T1>(MsgId id, Action<T0, T1> action) => _Unset(null, id, (Delegate)action);
-		public static void Set<T0, T1, T2>(MsgId id, Action<T0, T1, T2> action) => _Set(null, id, (Delegate)action);
-		public static void Unset<T0, T1, T2>(MsgId id, Action<T0, T1, T2> action) => _Unset(null, id, (Delegate)action);
-		public static void Set<T0, T1, T2, T3>(MsgId id, Action<T0, T1, T2, T3> action) => _Set(null, id, (Delegate)action);
-		public static void Unset<T0, T1, T2, T3>(MsgId id, Action<T0, T1, T2, T3> action) => _Unset(null, id, (Delegate)action);
-		public static void Set<T0, T1, T2, T3, T4>(MsgId id, Action<T0, T1, T2, T3, T4> action) => _Set(null, id, (Delegate)action);
-		public static void Unset<T0, T1, T2, T3, T4>(MsgId id, Action<T0, T1, T2, T3, T4> action) => _Unset(null, id, (Delegate)action);
-		public static void Set(GameObject g, MsgId id, Action action) { Assert.IsNotNull(g); _Set(g, id, (Delegate)action); }
-		public static void Unset(GameObject g, MsgId id, Action action) { Assert.IsNotNull(g); _Unset(g, id, (Delegate)action); }
-		public static void Set<T>(GameObject g, MsgId id, Action<T> action) { Assert.IsNotNull(g); _Set(g, id, (Delegate)action); }
-		public static void Unset<T>(GameObject g, MsgId id, Action<T> action) { Assert.IsNotNull(g); _Unset(g, id, (Delegate)action); }
-		public static void Set<T0, T1>(GameObject g, MsgId id, Action<T0, T1> action) { Assert.IsNotNull(g); _Set(g, id, (Delegate)action); }
-		public static void Unset<T0, T1>(GameObject g, MsgId id, Action<T0, T1> action) { Assert.IsNotNull(g); _Unset(g, id, (Delegate)action); }
-		public static void Set<T0, T1, T2>(GameObject g, MsgId id, Action<T0, T1, T2> action) { Assert.IsNotNull(g); _Set(g, id, (Delegate)action); }
-		public static void Unset<T0, T1, T2>(GameObject g, MsgId id, Action<T0, T1, T2> action) { Assert.IsNotNull(g); _Unset(g, id, (Delegate)action); }
-		public static void Set<T0, T1, T2, T3>(GameObject g, MsgId id, Action<T0, T1, T2, T3> action) { Assert.IsNotNull(g); _Set(g, id, (Delegate)action); }
-		public static void Unset<T0, T1, T2, T3>(GameObject g, MsgId id, Action<T0, T1, T2, T3> action) { Assert.IsNotNull(g); _Unset(g, id, (Delegate)action); }
-		public static void Set<T0, T1, T2, T3, T4>(GameObject g, MsgId id, Action<T0, T1, T2, T3, T4> action) { Assert.IsNotNull(g); _Set(g, id, (Delegate)action); }
-		public static void Unset<T0, T1, T2, T3, T4>(GameObject g, MsgId id, Action<T0, T1, T2, T3, T4> action) { Assert.IsNotNull(g); _Unset(g, id, (Delegate)action); }
-		static void _Set(GameObject g, MsgId id, Delegate action)
+		public static bool Set(MsgId id, Action action) => _Set(null, id, (Delegate)action);
+		public static bool Unset(MsgId id, Action action) => _Unset(null, id, (Delegate)action);
+		public static bool Set<T>(MsgId id, Action<T> action) => _Set(null, id, (Delegate)action);
+		public static bool Unset<T>(MsgId id, Action<T> action) => _Unset(null, id, (Delegate)action);
+		public static bool Set<T0, T1>(MsgId id, Action<T0, T1> action) => _Set(null, id, (Delegate)action);
+		public static bool Unset<T0, T1>(MsgId id, Action<T0, T1> action) => _Unset(null, id, (Delegate)action);
+		public static bool Set<T0, T1, T2>(MsgId id, Action<T0, T1, T2> action) => _Set(null, id, (Delegate)action);
+		public static bool Unset<T0, T1, T2>(MsgId id, Action<T0, T1, T2> action) => _Unset(null, id, (Delegate)action);
+		public static bool Set<T0, T1, T2, T3>(MsgId id, Action<T0, T1, T2, T3> action) => _Set(null, id, (Delegate)action);
+		public static bool Unset<T0, T1, T2, T3>(MsgId id, Action<T0, T1, T2, T3> action) => _Unset(null, id, (Delegate)action);
+		public static bool Set<T0, T1, T2, T3, T4>(MsgId id, Action<T0, T1, T2, T3, T4> action) => _Set(null, id, (Delegate)action);
+		public static bool Unset<T0, T1, T2, T3, T4>(MsgId id, Action<T0, T1, T2, T3, T4> action) => _Unset(null, id, (Delegate)action);
+		public static bool Set(GameObject g, MsgId id, Action action) { Assert.IsNotNull(g); return _Set(g, id, (Delegate)action); }
+		public static bool Unset(GameObject g, MsgId id, Action action) { Assert.IsNotNull(g); return _Unset(g, id, (Delegate)action); }
+		public static bool Set<T>(GameObject g, MsgId id, Action<T> action) { Assert.IsNotNull(g); return _Set(g, id, (Delegate)action); }
+		public static bool Unset<T>(GameObject g, MsgId id, Action<T> action) { Assert.IsNotNull(g); return _Unset(g, id, (Delegate)action); }
+		public static bool Set<T0, T1>(GameObject g, MsgId id, Action<T0, T1> action) { Assert.IsNotNull(g); return _Set(g, id, (Delegate)action); }
+		public static bool Unset<T0, T1>(GameObject g, MsgId id, Action<T0, T1> action) { Assert.IsNotNull(g); return _Unset(g, id, (Delegate)action); }
+		public static bool Set<T0, T1, T2>(GameObject g, MsgId id, Action<T0, T1, T2> action) { Assert.IsNotNull(g); return _Set(g, id, (Delegate)action); }
+		public static bool Unset<T0, T1, T2>(GameObject g, MsgId id, Action<T0, T1, T2> action) { Assert.IsNotNull(g); return _Unset(g, id, (Delegate)action); }
+		public static bool Set<T0, T1, T2, T3>(GameObject g, MsgId id, Action<T0, T1, T2, T3> action) { Assert.IsNotNull(g); return _Set(g, id, (Delegate)action); }
+		public static bool Unset<T0, T1, T2, T3>(GameObject g, MsgId id, Action<T0, T1, T2, T3> action) { Assert.IsNotNull(g); return _Unset(g, id, (Delegate)action); }
+		public static bool Set<T0, T1, T2, T3, T4>(GameObject g, MsgId id, Action<T0, T1, T2, T3, T4> action) { Assert.IsNotNull(g); return _Set(g, id, (Delegate)action); }
+		public static bool Unset<T0, T1, T2, T3, T4>(GameObject g, MsgId id, Action<T0, T1, T2, T3, T4> action) { Assert.IsNotNull(g); return _Unset(g, id, (Delegate)action); }
+		static bool _Set(GameObject g, MsgId id, Delegate action)
 		{
 			// // Invoke中に呼び出された場合、呼び出し中リストに加える
 			// if (_idToInvokingDelicates.TryGetValue(id, out var invoking_list) && !invoking_list.Contains(action))
@@ -345,10 +347,12 @@ namespace Emptybraces
 				_idToDeligates.Add(key, set = new HashSet<Delegate>());
 			var r = set.Add(action);
 			_LogSet(r, id, action);
-			RegisteredTime[key] = Time.frameCount;
+			if (r)
+				RegisteredTime[key] = Time.frameCount;
+			return r;
 		}
 
-		static void _Unset(GameObject g, MsgId id, Delegate action)
+		static bool _Unset(GameObject g, MsgId id, Delegate action)
 		{
 			var gid = g != null ? g.GetInstanceID() : 0;
 			bool r = false;
@@ -364,9 +368,10 @@ namespace Emptybraces
 				}
 			}
 			_LogUnset(r, id, action);
+			return r;
 		}
 
-		public static void Unset(GameObject g)
+		public static bool Unset(GameObject g)
 		{
 			var gid = g.GetInstanceID();
 			bool r = false;
@@ -379,6 +384,7 @@ namespace Emptybraces
 				}
 			}
 			_LogUnset(r, g);
+			return r;
 		}
 
 		static StringBuilder _sb;
@@ -403,14 +409,14 @@ namespace Emptybraces
 		[System.Diagnostics.Conditional("MSG_LOG_ENABLE")]
 		static void _LogSet(bool result, MsgId id, Delegate action)
 		{
-			if (result) Debug.Log($"<color=lightblue>Msg: Register({(int)id}.{id}) Success</color>");
-			else if (IsOutputError) Debug.Log($"<color=yellow>Msg: Register({(int)id}.{id}) Failed</color>");
+			if (result) Debug.Log($"<color=lightblue>Msg: Register({id}({(int)id})) Success</color>");
+			else if (IsOutputError) Debug.Log($"<color=yellow>Msg: Register({id}({(int)id})) Failed</color>");
 		}
 		[System.Diagnostics.Conditional("MSG_LOG_ENABLE")]
 		static void _LogUnset(bool result, MsgId id, Delegate action)
 		{
-			if (result) Debug.Log($"<color=lightblue>Msg: Unregister({(int)id}.{id}) Success</color>");
-			else if (IsOutputError) Debug.Log($"<color=yellow>Msg: Unregister({(int)id}.{id}) Failed</color>");
+			if (result) Debug.Log($"<color=lightblue>Msg: Unregister({id}({(int)id})) Success</color>");
+			else if (IsOutputError) Debug.Log($"<color=yellow>Msg: Unregister({id}({(int)id})) Failed</color>");
 		}
 		[System.Diagnostics.Conditional("MSG_LOG_ENABLE")]
 		static void _LogUnset(bool result, GameObject g)
@@ -423,17 +429,18 @@ namespace Emptybraces
 		static void _LogInvoke(MsgId id)
 		{
 			if (!_ignoreLogMsgId.Contains(id))
-				Debug.Log($"<color=lightblue>Msg: Invoke({(int)id}.{id})</color>");
+				Debug.Log($"<color=lightblue>Msg: Invoke({id}({(int)id}))</color>");
 		}
 		[System.Diagnostics.Conditional("MSG_LOG_ENABLE")]
 		static void _LogInvokeFailed(MsgId id, GameObject g = null)
 		{
 			if (IsOutputError && !_ignoreLogMsgId.Contains(id))
-				Debug.Log($"<color=yellow>Msg: Invoke Failed({(int)id}.{id}, {g})</color>");
+				Debug.Log($"<color=yellow>Msg: Invoke Failed({id}({(int)id}), {g})</color>");
 		}
 
 		[System.Diagnostics.Conditional("DEBUG")] static void _Log(string s) => Debug.Log(s);
 		[System.Diagnostics.Conditional("DEBUG")] static void _LogE(string s) => Debug.LogError(s);
+		[System.Diagnostics.Conditional("DEBUG")] static void _LogW(string s) => Debug.LogWarning(s);
 #if !DEBUG
 		[System.Diagnostics.Conditional("NEVER_CALLED")]
 #endif
@@ -454,11 +461,11 @@ namespace Emptybraces
 
 #if UNITY_EDITOR
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-		static void _DomainReset()
+		static void _OnDomainReload()
 		{
 			RegisteredTime = new Dictionary<(int, int), int>(32);
 			_idToDeligates = new Dictionary<(int, int), HashSet<Delegate>>(32);
-			_idToInvokingDelicates = new();
+			_idToInvokingCount = new();
 			_deligateListCaches = new();
 		}
 #endif
