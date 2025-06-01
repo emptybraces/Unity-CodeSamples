@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Emptybraces.Timeline
+namespace Emptybraces.Timeline.Editor
 {
 	// Custom property drawer that draws all child properties inline
 	[CustomPropertyDrawer(typeof(NoFoldOutAttribute))]

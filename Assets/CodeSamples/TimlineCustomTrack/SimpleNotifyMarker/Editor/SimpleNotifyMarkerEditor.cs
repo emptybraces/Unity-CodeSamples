@@ -3,10 +3,10 @@ using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.Timeline;
 
-namespace Emptybraces.Timeline
+namespace Emptybraces.Timeline.Editor
 {
     [CustomTimelineEditor(typeof(SimpleNotifyMarker))]
-    public class SimpleNotifyEditor : MarkerEditor
+    public class SimpleNotifyMarkerEditor : MarkerEditor
     {
         // デフォのマーカーは消せないから、カスタムするなら、隠すような画像にする必要がある。
         // const string k_OverlayPath = "eventmarker";
@@ -17,7 +17,7 @@ namespace Emptybraces.Timeline
         // static Texture2D s_OverlayCollapsedTexture;
         // static List<EventMarker> s_dupList;
 
-        static SimpleNotifyEditor()
+        static SimpleNotifyMarkerEditor()
         {
             // s_dupList = new();
             // s_OverlayTexture = Resources.Load<Texture2D>(k_OverlayPath);
