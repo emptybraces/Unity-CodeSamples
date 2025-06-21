@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Emptybraces
@@ -7,7 +8,8 @@ namespace Emptybraces
 	public class KeyHighlighter : MonoBehaviour
 	{
 		[SerializeField] KeyCode _keyCode;
-		[SerializeField] float _power = 0.5f;
+		[SerializeField] InputActionReference _inputActionRef;
+		[SerializeField] float _power = 0.4f;
 		[SerializeField] bool _isHold;
 		Image _image;
 		Color _c;
@@ -20,11 +22,22 @@ namespace Emptybraces
 		void Update()
 		{
 			_c.a = Mathf.Max(0, _c.a -= Time.deltaTime * 3);
+			if (_inputActionRef != null)
+			{
+				_inputActionRef.action.Enable();
+				if (_isHold ? _inputActionRef.action.IsPressed() : _inputActionRef.action.WasPressedThisFrame())
+					Highlight();
+			}
 			if (_isHold ? Input.GetKey(_keyCode) : Input.GetKeyDown(_keyCode))
 			{
-				_c.a = Mathf.Min(1, _c.a + _power);
+				Highlight();
 			}
 			_image.color = _c;
+		}
+
+		public void Highlight()
+		{
+			_c.a = Mathf.Min(0.7f, _c.a + _power);
 		}
 	}
 }

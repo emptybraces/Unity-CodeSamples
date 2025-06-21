@@ -14,17 +14,95 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data:
     Version: 0.1.0
-    SaveCount: 3
-    ProjectileDataList: []
-    TestDataDerivedList:
-    - N: 0
-    TestDataPolymorphismList:
-    - rid: 7885339164063563842
+    SaveCount: 5
+    OverrideBindingJson: '{"bindings":[{"action":"Main/Move","id":"e49b16e4-7603-4023-b1b7-25eeb34b9ccf","path":"<Keyboard>/upArrow","interactions":"null","processors":"null"},{"action":"UI/Navigate","id":"5be4abdc-ad7d-4199-88cc-4527cfa32c1d","path":"<Keyboard>/upArrow","interactions":"null","processors":"null"}]}'
+    ProjectileDataList:
+    - AASKey: p_Capsule
+      Position: {x: -14.816345, y: -4.5595703, z: -3.3369694}
+      Rotation: {x: 69.89386, y: 162.96957, z: 349.67505}
+      Velocity: {x: -4.435292, y: -11.124432, z: -1.6267347}
+      AngularVelocity: {x: -6.5360255, y: 0.09509347, z: 15.697555}
+    - AASKey: p_Cylinder
+      Position: {x: -0.13470459, y: 1.0894165, z: -0.41091824}
+      Rotation: {x: 62.563263, y: 156.35684, z: 149.09238}
+      Velocity: {x: 2.440939, y: 0.44937417, z: 1.64325}
+      AngularVelocity: {x: 3.9955742, y: 1.3465601, z: -6.0310287}
+    - AASKey: p_Sphere
+      Position: {x: -10.9296875, y: 1.4164429, z: 12.231472}
+      Rotation: {x: 344.56937, y: 74.70118, z: 330.9749}
+      Velocity: {x: -3.2507684, y: -0.7214925, z: 6.453524}
+      AngularVelocity: {x: 25.099073, y: -3.1254437, z: 12.642905}
+    - AASKey: p_Cylinder
+      Position: {x: -3.4905396, y: 0.9226074, z: -0.21564245}
+      Rotation: {x: 305.82193, y: 157.82326, z: 268.35336}
+      Velocity: {x: 0.5298859, y: -0.046595424, z: -1.2481717}
+      AngularVelocity: {x: -4.7714763, y: -0.105824836, z: -2.1951864}
+    - AASKey: p_Cube
+      Position: {x: 7.232422, y: 1.0117798, z: -0.027516842}
+      Rotation: {x: 27.740883, y: 72.288, z: 344.12036}
+      Velocity: {x: -0.18427944, y: 1.3688276, z: 0.8156527}
+      AngularVelocity: {x: 4.07227, y: 1.2367947, z: 0.5254836}
+    - AASKey: p_Sphere
+      Position: {x: 12.933777, y: 1.7214355, z: 0.3527999}
+      Rotation: {x: 40.440292, y: 239.22598, z: 281.54187}
+      Velocity: {x: 4.398385, y: -2.3814971, z: 1.9784769}
+      AngularVelocity: {x: 7.5843153, y: -10.504937, z: -16.870197}
+    - AASKey: p_Cylinder
+      Position: {x: 6.7123413, y: 1.9772339, z: 4.157552}
+      Rotation: {x: 320.84064, y: 244.09036, z: 251.29172}
+      Velocity: {x: 2.899789, y: -2.7758567, z: 2.3444479}
+      AngularVelocity: {x: 7.825566, y: 5.4503603, z: -10.967641}
+    - AASKey: p_Cube
+      Position: {x: 6.5498657, y: 0.553772, z: -1.419899}
+      Rotation: {x: 335.85513, y: 312.69434, z: 103.983574}
+      Velocity: {x: -0.49720663, y: -1.0353438, z: -0.39863616}
+      AngularVelocity: {x: -1.9411545, y: -0.30206493, z: 2.6894407}
+    - AASKey: p_Capsule
+      Position: {x: 7.1132812, y: 0.25, z: -1.1899128}
+      Rotation: {x: 36.64715, y: 49.59209, z: 270.00098}
+      Velocity: {x: 0.4302239, y: -0.000023931265, z: 0.36639312}
+      AngularVelocity: {x: 1.4655799, y: -0.00008601512, z: -1.7209461}
+    - AASKey: p_Cylinder
+      Position: {x: 5.024658, y: 0.6888428, z: 4.3858757}
+      Rotation: {x: 60.28597, y: 151.23174, z: 23.563513}
+      Velocity: {x: 4.3128524, y: 0.5828266, z: 3.9592667}
+      AngularVelocity: {x: 15.456139, y: 3.9015067, z: -15.525409}
+    - AASKey: p_Sphere
+      Position: {x: 1.4005737, y: 1.196228, z: 6.5127506}
+      Rotation: {x: 29.80142, y: 349.12354, z: 333.28806}
+      Velocity: {x: 0.46211076, y: 2.8096786, z: 7.105608}
+      AngularVelocity: {x: 28.109034, y: 12.915073, z: -1.8280463}
+    - AASKey: p_Cylinder
+      Position: {x: 2.0454712, y: 0.54815674, z: 3.9904852}
+      Rotation: {x: 353.94763, y: 238.50722, z: 51.765297}
+      Velocity: {x: 2.8513823, y: -4.2309074, z: 5.5054383}
+      AngularVelocity: {x: 9.2396755, y: -7.1982074, z: -5.5112505}
+    - AASKey: p_Sphere
+      Position: {x: -1.2905884, y: 2.3130493, z: 3.5594463}
+      Rotation: {x: 52.836662, y: 223.85875, z: 224.31555}
+      Velocity: {x: -0.051942706, y: 1.0647206, z: 6.1231833}
+      AngularVelocity: {x: 23.786325, y: 10.688509, z: 0.17920572}
+    - AASKey: p_Cube
+      Position: {x: -0.97424316, y: 2.3745728, z: 1.6097746}
+      Rotation: {x: 36.363842, y: 181.67017, z: 175.71233}
+      Velocity: {x: 0.44512057, y: 5.5702786, z: 3.508357}
+      AngularVelocity: {x: 11.480616, y: 0.22977625, z: -1.6730181}
+    - AASKey: p_Capsule
+      Position: {x: 1.0184937, y: 1.1221313, z: 1.009408}
+      Rotation: {x: 19.1608, y: 13.400075, z: 66.93233}
+      Velocity: {x: -2.2637982, y: 5.0834765, z: 3.785193}
+      AngularVelocity: {x: 7.704223, y: 1.1455215, z: 5.021129}
+    - AASKey: p_Cylinder
+      Position: {x: 3.0457764, y: 0.70965576, z: 0.13803005}
+      Rotation: {x: 32.318542, y: 355.50204, z: 353.51013}
+      Velocity: {x: 1.9374928, y: 6.1816387, z: 6.0652494}
+      AngularVelocity: {x: 12.150859, y: -0.76650685, z: -3.9079719}
+    - AASKey: p_Sphere
+      Position: {x: 2.8764038, y: 0.73828125, z: -0.7447367}
+      Rotation: {x: 13.125197, y: 323.7416, z: 89.20153}
+      Velocity: {x: 2.6149049, y: -5.535346, z: 8.095699}
+      AngularVelocity: {x: 2.7756786, y: 5.887677, z: -13.673038}
+    TestDataList: []
   references:
     version: 2
-    RefIds:
-    - rid: 7885339164063563842
-      type: {class: TestDataDerivedClass, ns: Emptybraces, asm: Assembly-CSharp}
-      data:
-        N: 0
-        NN: 0
+    RefIds: []

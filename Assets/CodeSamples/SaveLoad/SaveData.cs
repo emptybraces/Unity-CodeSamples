@@ -8,6 +8,7 @@ namespace Emptybraces
 	{
 		public string Version;
 		public int SaveCount;
+		public string OverrideBindingJson;
 		public List<ProjectileData> ProjectileDataList = new();
 		[SerializeReference] public List<TestDataBase> TestDataList = new();
 

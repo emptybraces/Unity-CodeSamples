@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.IO;
-using UnityEngine.Assertions;
 
 namespace Emptybraces
 {
