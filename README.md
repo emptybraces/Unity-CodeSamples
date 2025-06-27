@@ -1,7 +1,7 @@
 # Unity Code Samples
 
 ## [Rebinding Input Actions](Assets/CodeSamples/RebindInputSystem)
-Sample code for Inputsystem's key configuration system. Compatible with Control Schema and TextMeshSprite.
+Sample code for Inputsystem's key configuration system. Compatible with Control Schema and TextMeshPro-Sprite.
 ![out](https://github.com/user-attachments/assets/41dff8cd-ccd5-4d7e-b78f-eb08f31c1a61)
 
 ## [Msg](Assets/CodeSamples/Msg)
