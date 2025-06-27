@@ -1,7 +1,7 @@
 {
     "Version": "0.1.0",
-    "SaveCount": 36,
-    "OverrideBindingJson": "{\"bindings\":[{\"action\":\"Main/Move\",\"id\":\"9d39e39a-9733-4e46-8306-3d4f2c08b02c\",\"path\":\"<Gamepad>/rightStick\",\"interactions\":\"null\",\"processors\":\"null\"},{\"action\":\"Main/Move\",\"id\":\"591ffe79-2eab-465d-8fae-c2b9db28e76c\",\"path\":\"<Keyboard>/r\",\"interactions\":\"null\",\"processors\":\"null\"},{\"action\":\"Main/Interact\",\"id\":\"bb496a16-ee08-4ee0-9164-608f6d8921a2\",\"path\":\"<Gamepad>/leftStick/down\",\"interactions\":\"null\",\"processors\":\"null\"}]}",
+    "SaveCount": 112,
+    "OverrideBindingJson": "",
     "ProjectileDataList": [
         {
             "AASKey": "p_Capsule",

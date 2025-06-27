@@ -74,3 +74,6 @@ crashlytics-build.properties
 /Assets/CodeSamples/_Test*
 /Assets/Samples*
 /Assets/TextMesh Pro/Examples & Extras*
+/Assets/Plugins/Emptybraces*
+/Assets/SelectionHistory.asset*
+/Assets/Plugins/Input Prompts*

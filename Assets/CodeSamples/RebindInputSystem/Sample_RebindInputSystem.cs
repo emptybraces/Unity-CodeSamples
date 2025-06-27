@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.UI;
 
 namespace Emptybraces.RebindInputSystemSample
@@ -27,21 +29,7 @@ namespace Emptybraces.RebindInputSystemSample
 		Dictionary<string, TMPro.TextMeshProUGUI> _bindingToTMPro = new();
 		bool _isBusy;
 		float _waitInputStartTime;
-		string _GetKey(InputAction a, InputBinding b) => $"{a.actionMap.name}/{b.action}|{b.name}|{b.path}|{b.groups}";
-		void _SetBindingLabel(TMPro.TextMeshProUGUI tm, InputAction a, InputBinding b)
-		{
-			var binding_idx = _GetBindingIndex(a, b);
-			if (b.isPartOfComposite) // comporite partじゃなければb.nameはnull
-				tm.text = $"   - Action: {a.name}/{b.name.ToUpperInvariant()}, Binding: {a.GetBindingDisplayString(binding_idx)}";
-			else
-				tm.text = $"   - Action: {a.name}, Binding: {a.GetBindingDisplayString(binding_idx)}";
-			LayoutRebuilder.ForceRebuildLayoutImmediate(tm.rectTransform);
-		}
-		int _GetBindingIndex(InputAction a, InputBinding b)
-		{
-			var binding_id = b.id;
-			return a.bindings.IndexOf(x => x.id == binding_id);
-		}
+		IDisposable _onAnyKeyDownListener;
 
 		void Awake()
 		{
@@ -78,6 +66,7 @@ namespace Emptybraces.RebindInputSystemSample
 
 		void OnDisable()
 		{
+			_onAnyKeyDownListener?.Dispose();
 			SaveLoad.Data.OverrideBindingJson = _actionMap.SaveBindingOverridesAsJson();
 			SaveLoad.Save();
 			_rebindOperation?.Cancel();
@@ -100,6 +89,7 @@ namespace Emptybraces.RebindInputSystemSample
 			foreach (var actionMap in _actionMap.asset.actionMaps)
 				foreach (var a in actionMap.actions)
 					ResetOverrideBinding(a);
+
 		}
 		public void ResetOverrideBinding(InputAction action, int bindingIndex = -1)
 		{
@@ -175,6 +165,7 @@ namespace Emptybraces.RebindInputSystemSample
 			_waitInputStartTime = Time.unscaledTime + _waitInputTime;
 			cn.log("PerformInteractiveRebinding call");
 			_rebindOperation = action.PerformInteractiveRebinding(binding_idx)
+				.WithCancelingThrough("<Keyboard>/escape")
 				.OnMatchWaitForAnother(.2f) // 少し待ってから最後に入力があったものを確定する
 				.WithTimeout(_waitInputTime)
 				.OnCancel(
@@ -194,7 +185,7 @@ namespace Emptybraces.RebindInputSystemSample
 					operation =>
 					{
 						var new_binding_control = operation.selectedControl;
-						cn.log("OnPotentialMatch", new_binding_control);
+						cn.log("OnPotentialMatch", new_binding_control, _rebindOperation.expectedControlType);
 						// 重複キーアサインのチェック
 						string exist_action_binding = null;
 						foreach (var a in action.actionMap.actions) // 同じアクションマップのみを対象とする
@@ -230,7 +221,10 @@ namespace Emptybraces.RebindInputSystemSample
 			if (_mouseDeviceExcludeActions.Contains(action.name))
 				_rebindOperation.WithControlsExcluding("<Mouse>");
 			if (scheme == _schemaKeymou)
-				_rebindOperation.WithControlsExcluding("<Gamepad>");
+				_rebindOperation.WithControlsExcluding("<Gamepad>")
+					.WithControlsExcluding("<Keyboard>/leftMeta") // windowsキーを無効にし、フォールバックされたanykeyも無効にする
+					.WithControlsExcluding("<Keyboard>/rightMeta")
+					.WithControlsExcluding("<Keyboard>/anyKey");
 			if (scheme == _schemaPad)
 				_rebindOperation.WithControlsExcluding("<Keyboard>").WithControlsExcluding("<Mouse>");
 			_rebindOperation.Start();
@@ -240,6 +234,7 @@ namespace Emptybraces.RebindInputSystemSample
 				// refresh text
 				if (!isCancelled)
 				{
+					binding = action.bindings[binding_idx];
 					var tm = _bindingToTMPro[_GetKey(action, binding)];
 					_SetBindingLabel(tm, action, binding);
 					_rebindOperation?.Dispose();
@@ -268,9 +263,52 @@ namespace Emptybraces.RebindInputSystemSample
 				// }
 			}
 		}
+		
 		bool _IsBindingConflicting(string pathA, string pathB)
 		{
 			return pathA == pathB || pathA.StartsWith(pathB + "/") || pathB.StartsWith(pathA + "/");
+		}
+
+		string _GetKey(InputAction a, InputBinding b) => $"{a.actionMap.name}/{b.action}|{b.name}|{b.path}|{b.groups}";
+
+		void _SetBindingLabel(TMPro.TextMeshProUGUI tm, InputAction a, InputBinding b)
+		{
+			var binding_idx = _GetBindingIndex(a, b);
+			var display = a.GetBindingDisplayString(binding_idx);
+			var sprite_tag = "";
+			// effectivepathはキーボードの場合、キー印字と取得できるIDが一致しない。GetBindingDisplayStringは一致する。
+			if (b.groups.Contains(_schemaKeymou))
+				sprite_tag = $"<sprite name=\"{display}\">";
+			else
+			{
+				// GetBindingDisplayStringを使うと、AとかBとかキーボタンがキーボードと被る。
+				// b.effectivepathは"Submit"などの仮想パスが取得されてしまう。
+
+				// デバイス未接続時はマッチしなくなる。
+				// 例えば<Gamepad>/{Submit}から、/SwitchProControllerHID/ButtonEastを取得するにはデバイスを接続してないと無理そう。
+				// デバイス未接続時はアイコン非表示にしたり対応すれば良さそう。
+				var c = a.controls.FirstOrDefault(c => InputControlPath.Matches(b.effectivePath, c));
+				if (c != null)
+				{
+					var splits = c.path.Split('/', System.StringSplitOptions.RemoveEmptyEntries);
+					if (1 < splits.Length)
+					{
+						var path = string.Join("/", splits, 1, splits.Length - 1);
+						sprite_tag = $"<sprite name=\"{path}\">"; // c.nameは末尾のみ取得
+					}
+				}
+			}
+			if (b.isPartOfComposite) // comporite partじゃなければb.nameはnull
+				tm.text = $"   - Action: {a.name}/{b.name.ToUpperInvariant()}, Binding: {display} {sprite_tag}";
+			else
+				tm.text = $"   - Action: {a.name}, Binding: {display} {sprite_tag}";
+			LayoutRebuilder.ForceRebuildLayoutImmediate(tm.rectTransform);
+		}
+
+		int _GetBindingIndex(InputAction a, InputBinding b)
+		{
+			var binding_id = b.id;
+			return a.bindings.IndexOf(x => x.id == binding_id);
 		}
 	}
 }

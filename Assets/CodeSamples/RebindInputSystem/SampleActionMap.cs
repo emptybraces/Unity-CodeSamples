@@ -336,7 +336,7 @@ public partial class @SampleActionMap: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7fbe2a9b-9a8d-4c09-889f-08b1dd5b31a8"",
-                    ""path"": ""<Keyboard>/{Cancel}"",
+                    ""path"": ""<Keyboard>/backspace"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keymou"",
