@@ -1,5 +1,9 @@
 # Unity Code Samples
 
+## [Rebinding Input Actions](Assets/CodeSamples/RebindInputSystem)
+Sample code for Inputsystem's key configuration system. Compatible with Control Schema and TextMeshSprite.
+![out](https://github.com/user-attachments/assets/41dff8cd-ccd5-4d7e-b78f-eb08f31c1a61)
+
 ## [Msg](Assets/CodeSamples/Msg)
 Example implementation of an EventBus that calls a function with an arbitrary signature from an enum ID.
 ![Msg](https://github.com/user-attachments/assets/7f63e846-31be-4593-b646-7f90147cad45)
